@@ -15,8 +15,6 @@ import org.ufoss.kotysa.R2dbcSqlClient
 class DBSyncExtension: Extension() {
     override val name: String = "db-sync"
 
-    val xiao: R2dbcSqlClient by inject()
-
     override suspend fun setup() {
         getKoin().loadModules(listOf(dataBaseModule))
     }
