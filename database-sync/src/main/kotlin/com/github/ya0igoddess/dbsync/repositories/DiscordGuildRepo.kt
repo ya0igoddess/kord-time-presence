@@ -1,19 +1,36 @@
 package com.github.ya0igoddess.dbsync.repositories
 
 import com.github.ya0igoddess.dbsync.database.Guilds
-import com.github.ya0igoddess.dbsync.database.Users
-import com.github.ya0igoddess.dbsync.model.discord.DiscordGuild
-import com.github.ya0igoddess.dbsync.model.discord.DiscordUser
+import com.github.ya0igoddess.dbsync.model.discord.DsGuild
 import com.github.ya0igoddess.dbsync.service.common.CRUDService
+import com.github.ya0igoddess.dbsync.service.common.ISynchronizationService
 import com.github.ya0igoddess.dbsync.service.common.KotysaLongCRUDRepository
+import dev.kord.core.entity.Guild
 import org.ufoss.kotysa.R2dbcSqlClient
 
-interface IDiscordGuildRepoService : CRUDService<DiscordGuild, Long>
+interface IDiscordGuildRepoService : CRUDService<DsGuild, Long>, ISynchronizationService<DsGuild, Guild>
 
 class DiscordGuildCRUDRepo(
         sqlClient: R2dbcSqlClient
-) : KotysaLongCRUDRepository<DiscordGuild>(Guilds, Guilds.id, sqlClient)
+) : KotysaLongCRUDRepository<DsGuild>(Guilds, Guilds.id, sqlClient)
 
 class DiscordGuildRepoService(
-        discoGuildCRUDRepo: DiscordGuildCRUDRepo
-) : CRUDService<DiscordGuild, Long> by discoGuildCRUDRepo, IDiscordGuildRepoService
+        private val dsGuildCRUDRepo: DiscordGuildCRUDRepo
+) : CRUDService<DsGuild, Long> by dsGuildCRUDRepo, IDiscordGuildRepoService {
+    override suspend fun getByExternalEntity(externalEntity: Guild): DsGuild? {
+        return dsGuildCRUDRepo.getById(externalEntity.id.value.toLong())
+    }
+
+    override suspend fun createFromExternalEntity(externalEntity: Guild): DsGuild {
+        return dsGuildCRUDRepo.save(DsGuild(
+                id = externalEntity.id.value,
+                name = externalEntity.name
+        ))
+    }
+
+    override suspend fun updateWithExternalEntity(internalEntity: DsGuild, externalEntity: Guild): DsGuild {
+        return dsGuildCRUDRepo.update(internalEntity.copy(
+                name = externalEntity.name
+        ))
+    }
+}
