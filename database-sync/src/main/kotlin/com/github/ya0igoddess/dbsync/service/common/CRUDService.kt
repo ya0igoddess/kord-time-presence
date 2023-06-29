@@ -4,7 +4,7 @@ import kotlinx.coroutines.flow.Flow
 
 interface CRUDService<T, ID> {
 
-    suspend fun getById(id: ID): T
+    suspend fun getById(id: ID): T?
 
     suspend fun save(entity: T): T
 

@@ -1,6 +1,6 @@
 package com.github.ya0igoddess.dbsync.model.discord
 
-data class DiscordUser(
+data class DsUser(
     val id: ULong,
     val name: String,
 )

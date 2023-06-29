@@ -23,7 +23,7 @@ abstract class KotysaLongCRUDRepository<T: Any>(
         override val tableIdColumn: LongDbBigIntColumnNotNull<T>,
         sqlClient: R2dbcSqlClient,
 ): KotysaAbstractCRUDRepository<T, Long>(table, tableIdColumn, sqlClient) {
-    override suspend fun getById(id: Long): T = (sqlClient select table from table where tableIdColumn eq id).fetchFirst()!!
+    override suspend fun getById(id: Long): T? = (sqlClient select table from table where tableIdColumn eq id).fetchFirst()
 
     override suspend fun save(entity: T): T = sqlClient insertAndReturn entity
 
