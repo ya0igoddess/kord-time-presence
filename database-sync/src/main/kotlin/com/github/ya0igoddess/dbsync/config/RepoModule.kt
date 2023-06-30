@@ -2,6 +2,7 @@ package com.github.ya0igoddess.dbsync.config
 
 import com.github.ya0igoddess.dbsync.database.dataBaseModule
 import com.github.ya0igoddess.dbsync.repositories.DiscordGuildCRUDRepo
+import com.github.ya0igoddess.dbsync.repositories.DiscordMemberCrudRepo
 import com.github.ya0igoddess.dbsync.repositories.DiscordUserCRUDRepo
 import org.koin.core.module.dsl.singleOf
 import org.koin.dsl.module
@@ -12,4 +13,5 @@ val repoModule = module {
 
     singleOf<DiscordGuildCRUDRepo, R2dbcSqlClient>(::DiscordGuildCRUDRepo)
     singleOf<DiscordUserCRUDRepo, R2dbcSqlClient>(::DiscordUserCRUDRepo)
+    singleOf<DiscordMemberCrudRepo, R2dbcSqlClient>(::DiscordMemberCrudRepo)
 }

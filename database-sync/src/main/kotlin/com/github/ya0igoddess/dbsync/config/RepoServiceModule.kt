@@ -9,4 +9,5 @@ val repoServiceModule = module {
 
     singleOf<IDiscordUserRepoService, DiscordUserCRUDRepo>(::DiscordUserRepoService)
     singleOf<IDiscordGuildRepoService, DiscordGuildCRUDRepo>(::DiscordGuildRepoService)
+    singleOf<IDiscordMemberRepoService, DiscordMemberCrudRepo>(::DiscordMemberRepoService)
 }
