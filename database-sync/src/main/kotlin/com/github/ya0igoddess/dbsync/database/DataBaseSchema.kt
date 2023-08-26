@@ -8,7 +8,7 @@ import org.ufoss.kotysa.postgresql.PostgresqlTable
 import org.ufoss.kotysa.tables
 
 object Users: PostgresqlTable<DsUser>("discord_user") {
-    val id = bigInt({ it.id.toLong() })
+    val id = bigInt(DsUser::id)
         .primaryKey()
     val name = varchar(DsUser::name)
 }
