@@ -1,20 +1,21 @@
 package com.github.ya0igoddess.dbsync.service.settings
 
-import org.yaml.snakeyaml.Yaml
+import com.akuleshov7.ktoml.file.TomlFileReader
+import com.github.ya0igoddess.dbsync.config.settings.KordDBSettings
+import kotlinx.serialization.serializer
 import java.io.File
+import java.util.function.Supplier
 
-class FileSettingService : SettingsService  {
+class FileSettingsProvider : Supplier<KordDBSettings> {
+    override fun get(): KordDBSettings {
+        val settingProperty = System.getProperty("kord-db-sync-settings")
+        val file = if (settingProperty != null) {
+            File(settingProperty)
+        } else {
+            File(this.javaClass.classLoader.getResource("settings.toml")?.file
+                ?: throw IllegalArgumentException("Settings file is not present"))
+        }
 
-    private val file = if (System.getProperty("kordSettings") != null) {
-        File(System.getProperty("kordSettings"))
-    } else {
-        File(this.javaClass.classLoader.getResource("kord-settings.yaml")!!.file)
+        return TomlFileReader.partiallyDecodeFromFile(serializer(), file.absolutePath, "kord-db-sync")
     }
-
-    private val map: Map<String, Any> = Yaml().load(file.inputStream())
-
-    override fun <T> getValue(code: String): T {
-        return map[code] as T
-    }
-
 }

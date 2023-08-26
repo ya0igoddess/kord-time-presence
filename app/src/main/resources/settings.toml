@@ -1,0 +1,4 @@
+[kord-db-sync]
+[kord-db-sync.r2dbc]
+url = 'r2dbc:postgresql://localhost:5432/postgres'
+password = 'postgres'

@@ -9,6 +9,7 @@ pluginManagement {
 
     plugins {
         kotlin("jvm") version kotlinVersion apply false
+        kotlin("plugin.serialization") version kotlinVersion apply false
     }
 }
 
