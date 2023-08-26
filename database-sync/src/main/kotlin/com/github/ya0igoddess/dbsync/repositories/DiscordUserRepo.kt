@@ -2,6 +2,7 @@ package com.github.ya0igoddess.dbsync.repositories
 
 import com.github.ya0igoddess.dbsync.database.Users
 import com.github.ya0igoddess.dbsync.model.discord.DsUser
+import com.github.ya0igoddess.dbsync.model.discord.lvalue
 import com.github.ya0igoddess.dbsync.service.common.CRUDService
 import com.github.ya0igoddess.dbsync.service.common.ISynchronizationService
 import com.github.ya0igoddess.dbsync.service.common.KotysaLongCRUDRepository
@@ -17,12 +18,12 @@ class DiscordUserRepoService(
         private val discordUserCRUDRepo: DiscordUserCRUDRepo
 ) : CRUDService<DsUser, Long> by discordUserCRUDRepo, IDiscordUserRepoService {
     override suspend fun getByExternalEntity(externalEntity: User): DsUser? {
-        return discordUserCRUDRepo.getById(externalEntity.id.value.toLong())
+        return discordUserCRUDRepo.getById(externalEntity.id.lvalue)
     }
 
     override suspend fun createFromExternalEntity(externalEntity: User): DsUser {
         return discordUserCRUDRepo.save(DsUser(
-                id = externalEntity.id.value,
+                id = externalEntity.id.lvalue,
                 name = externalEntity.username
         ))
     }
