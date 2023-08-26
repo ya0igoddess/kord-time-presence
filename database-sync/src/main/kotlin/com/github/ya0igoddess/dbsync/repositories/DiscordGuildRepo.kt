@@ -2,6 +2,7 @@ package com.github.ya0igoddess.dbsync.repositories
 
 import com.github.ya0igoddess.dbsync.database.Guilds
 import com.github.ya0igoddess.dbsync.model.discord.DsGuild
+import com.github.ya0igoddess.dbsync.model.discord.lvalue
 import com.github.ya0igoddess.dbsync.service.common.CRUDService
 import com.github.ya0igoddess.dbsync.service.common.ISynchronizationService
 import com.github.ya0igoddess.dbsync.service.common.KotysaLongCRUDRepository
@@ -18,12 +19,12 @@ class DiscordGuildRepoService(
         private val dsGuildCRUDRepo: DiscordGuildCRUDRepo
 ) : CRUDService<DsGuild, Long> by dsGuildCRUDRepo, IDiscordGuildRepoService {
     override suspend fun getByExternalEntity(externalEntity: Guild): DsGuild? {
-        return dsGuildCRUDRepo.getById(externalEntity.id.value.toLong())
+        return dsGuildCRUDRepo.getById(externalEntity.id.lvalue)
     }
 
     override suspend fun createFromExternalEntity(externalEntity: Guild): DsGuild {
         return dsGuildCRUDRepo.save(DsGuild(
-                id = externalEntity.id.value,
+                id = externalEntity.id.lvalue,
                 name = externalEntity.name
         ))
     }

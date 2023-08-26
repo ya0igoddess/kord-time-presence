@@ -14,13 +14,14 @@ object Users: PostgresqlTable<DsUser>("discord_user") {
 }
 
 object Guilds: PostgresqlTable<DsGuild>("discord_guild") {
-    val id = bigInt({it.id.toLong()})
+    val id = bigInt(DsGuild::id)
         .primaryKey()
     val name = varchar(DsGuild::name)
 }
 
 object Members: PostgresqlTable<DsMember>("discord_member") {
     val id = bigInt(DsMember::id)
+        .primaryKey()
     val name = varchar(DsMember::name)
     val guildId = bigInt(DsMember::guildId)
         .foreignKey(Guilds.id)
