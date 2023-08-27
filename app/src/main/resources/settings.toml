@@ -3,3 +3,8 @@
 url = 'r2dbc:postgresql://localhost:5432/postgres'
 user = 'postgres'
 password = 'postgres'
+
+[kord-db-sync.jdbc]
+url = 'jdbc:postgresql://localhost:5432/postgres'
+user = 'postgres'
+password = 'postgres'

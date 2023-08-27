@@ -15,6 +15,8 @@ dependencies {
     implementation("com.akuleshov7:ktoml-file:0.5.0")
 
     implementation("org.ufoss.kotysa:kotysa-r2dbc:3.1.0")
+
+    implementation("org.liquibase:liquibase-core:4.23.1")
     implementation(kotlin("stdlib-jdk8"))
 }
 kotlin {

@@ -15,6 +15,7 @@ dependencies {
     implementation(kotlin("stdlib-jdk8"))
 
     runtimeOnly("org.postgresql:r2dbc-postgresql:1.0.2.RELEASE")
+    runtimeOnly("org.postgresql:postgresql:42.6.0")
 }
 kotlin {
     jvmToolchain(17)

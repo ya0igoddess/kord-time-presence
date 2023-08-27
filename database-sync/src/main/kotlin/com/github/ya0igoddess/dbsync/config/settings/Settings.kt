@@ -4,11 +4,12 @@ import kotlinx.serialization.Serializable
 
 @Serializable
 data class KordDBSettings(
-    val r2dbc: R2DBCSettings?
+    val r2dbc: DBConnectionSettings?,
+    val jdbc: DBConnectionSettings?
 )
 
 @Serializable
-data class R2DBCSettings(
+data class DBConnectionSettings(
     val url: String?,
     val user: String?,
     val password: String?,
