@@ -1,0 +1,50 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<databaseChangeLog
+        xmlns="http://www.liquibase.org/xml/ns/dbchangelog"
+        xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+        xmlns:ext="http://www.liquibase.org/xml/ns/dbchangelog-ext"
+        xmlns:pro="http://www.liquibase.org/xml/ns/pro"
+        xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog
+        http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-latest.xsd
+        http://www.liquibase.org/xml/ns/dbchangelog-ext http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-ext.xsd
+        http://www.liquibase.org/xml/ns/pro http://www.liquibase.org/xml/ns/pro/liquibase-pro-latest.xsd">
+
+    <changeSet id="createTableDsUser" author="ya0igoddess">
+        <createTable tableName="discord_user">
+            <column name="id" type="bigint" autoIncrement="true">
+                <constraints primaryKey="true"/>
+            </column>
+            <column name="name" type="varchar(256)"/>
+        </createTable>
+    </changeSet>
+
+    <changeSet id="createTableDsGuild" author="ya0igoddess">
+        <createTable tableName="discord_guild">
+            <column name="id" type="bigint" autoIncrement="true">
+                <constraints primaryKey="true"/>
+            </column>
+            <column name="name" type="varchar"/>
+        </createTable>
+    </changeSet>
+
+    <changeSet id="createTableDiscordMember" author="ya0igoddess">
+        <createTable tableName="discord_member">
+            <column name="id" type="bigint" autoIncrement="true">
+                <constraints primaryKey="true"/>
+            </column>
+            <column name="name" type="varchar"/>
+            <column name="user_id" type="bigint">
+                <constraints
+                        foreignKeyName="fk_member_user"
+                        referencedTableName="discord_user"
+                        referencedColumnNames="id"/>
+            </column>
+            <column name="guild_id" type="bigint">
+                <constraints
+                        foreignKeyName="fk_member_guild"
+                        referencedTableName="discord_guild"
+                        referencedColumnNames="id"/>
+            </column>
+        </createTable>
+    </changeSet>
+</databaseChangeLog>
