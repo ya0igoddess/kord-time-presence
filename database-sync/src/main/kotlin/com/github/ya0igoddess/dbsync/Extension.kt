@@ -17,8 +17,14 @@ import kotlinx.coroutines.flow.collect
 import org.koin.core.component.inject
 import java.util.logging.Logger
 
+
 class DBSyncExtension: Extension() {
-    override val name: String = "kord-db-sync"
+
+    companion object {
+        const val code = "kord_db_sync"
+    }
+
+    override val name: String = code
 
     override suspend fun setup() {
         getKoin().loadModules(listOf(DBSyncModule))
@@ -29,16 +35,16 @@ class DBSyncExtension: Extension() {
 
         loadLiquibase(settings.jdbc!!, name, "db/changelog/kord-db-sync/main-changelog.xml")
 
-//        event<MemberJoinEvent> {
-//            action {
-//                userService.createFromExternalEntity(event.member.asUser())
-//            }
-//        }
+        event<MemberJoinEvent> {
+            action {
+                userService.createFromExternalEntity(event.member.asUser())
+            }
+        }
 
-//        event<GuildCreateEvent> {
-//            action {
-//                guildService.getOrCreateFromExternal(event.guild)
-//            }
-//        }
+        event<GuildCreateEvent> {
+            action {
+                guildService.getOrCreateFromExternal(event.guild)
+            }
+        }
     }
 }
