@@ -3,6 +3,7 @@ package com.github.ya0igoddess.dbsync.extensions
 import com.github.ya0igoddess.dbsync.config.DBSyncModule
 import com.github.ya0igoddess.dbsync.config.settings.KordDBSettings
 import com.github.ya0igoddess.dbsync.migration.loadLiquibase
+import com.github.ya0igoddess.dbsync.repositories.IDiscordChannelRepoService
 import com.github.ya0igoddess.dbsync.repositories.IDiscordGuildRepoService
 import com.github.ya0igoddess.dbsync.repositories.IDiscordMemberRepoService
 import com.github.ya0igoddess.dbsync.repositories.IDiscordUserRepoService
@@ -10,6 +11,7 @@ import com.kotlindiscord.kord.extensions.extensions.Extension
 import com.kotlindiscord.kord.extensions.extensions.event
 import dev.kord.core.event.guild.GuildCreateEvent
 import dev.kord.core.event.guild.MemberJoinEvent
+import kotlinx.coroutines.flow.collect
 import org.koin.core.component.inject
 
 
@@ -24,9 +26,9 @@ class DBSyncExtension: Extension() {
     override suspend fun setup() {
         getKoin().loadModules(listOf(DBSyncModule))
 
-        val userService: IDiscordUserRepoService by inject()
         val guildService: IDiscordGuildRepoService by inject()
         val memberService: IDiscordMemberRepoService by inject()
+        val channelService: IDiscordChannelRepoService by inject()
         val settings: KordDBSettings by inject()
 
         loadLiquibase(settings.jdbc!!, name, "db/changelog/kord-db-sync/main-changelog.xml")
@@ -41,6 +43,7 @@ class DBSyncExtension: Extension() {
             action {
                 guildService.getOrCreateFromExternal(event.guild)
                 event.guild.members.collect(memberService::getOrCreateFromExternal)
+                event.guild.channels.collect(channelService::getOrCreateFromExternal)
             }
         }
     }
