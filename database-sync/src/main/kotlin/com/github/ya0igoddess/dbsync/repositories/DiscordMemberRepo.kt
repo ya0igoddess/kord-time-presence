@@ -26,7 +26,7 @@ class DiscordMemberCrudRepo(
                 where
                     Members.guildId eq guildId and
                     Members.userId eq userId
-                ).fetchFirst()
+                ).fetchFirstOrNull()
     }
 }
 
