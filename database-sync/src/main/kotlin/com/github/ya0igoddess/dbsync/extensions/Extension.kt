@@ -9,6 +9,10 @@ import com.github.ya0igoddess.dbsync.repositories.IDiscordMemberRepoService
 import com.github.ya0igoddess.dbsync.repositories.IDiscordUserRepoService
 import com.kotlindiscord.kord.extensions.extensions.Extension
 import com.kotlindiscord.kord.extensions.extensions.event
+import dev.kord.common.entity.ChannelType
+import dev.kord.core.entity.channel.GuildChannel
+import dev.kord.core.event.channel.ChannelCreateEvent
+import dev.kord.core.event.channel.TextChannelCreateEvent
 import dev.kord.core.event.guild.GuildCreateEvent
 import dev.kord.core.event.guild.MemberJoinEvent
 import kotlinx.coroutines.flow.collect
@@ -44,6 +48,15 @@ class DBSyncExtension: Extension() {
                 guildService.getOrCreateFromExternal(event.guild)
                 event.guild.members.collect(memberService::getOrCreateFromExternal)
                 event.guild.channels.collect(channelService::getOrCreateFromExternal)
+            }
+        }
+
+        event<ChannelCreateEvent> {
+            action {
+                val channel = event.channel
+                if (channel is GuildChannel) {
+                    channelService.createFromExternalEntity(channel)
+                }
             }
         }
     }
