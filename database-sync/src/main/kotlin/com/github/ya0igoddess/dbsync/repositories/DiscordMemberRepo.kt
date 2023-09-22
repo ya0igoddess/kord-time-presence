@@ -1,10 +1,7 @@
 package com.github.ya0igoddess.dbsync.repositories
 
 import com.github.ya0igoddess.dbsync.database.Members
-import com.github.ya0igoddess.dbsync.model.discord.DsGuild
-import com.github.ya0igoddess.dbsync.model.discord.DsMember
-import com.github.ya0igoddess.dbsync.model.discord.DsUser
-import com.github.ya0igoddess.dbsync.model.discord.lvalue
+import com.github.ya0igoddess.dbsync.model.discord.*
 import com.github.ya0igoddess.dbsync.service.common.CRUDService
 import com.github.ya0igoddess.dbsync.service.common.ISynchronizationService
 import com.github.ya0igoddess.dbsync.service.common.KotysaLongCRUDRepository
@@ -19,6 +16,11 @@ interface IDiscordMemberRepoService : CRUDService<DsMember, Long>, ISynchronizat
 class DiscordMemberCrudRepo(
     sqlClient: R2dbcSqlClient
 ): KotysaLongCRUDRepository<DsMember>(Members, Members.id, sqlClient) {
+
+    override suspend fun save(entity: DsMember): DsMember {
+        val saved = sqlClient insertAndReturn AbstractDsMember(entity)
+        return saved.asMember
+    }
     suspend fun getByGuildAndUser(guildId: Long, userId: Long): DsMember? {
         return (sqlClient
                 select Members
@@ -44,6 +46,7 @@ class DiscordMemberRepoService(
     }
 
     override suspend fun createFromExternalEntity(externalEntity: Member): DsMember {
+        userService.getOrCreateFromExternal(externalEntity)
         return repo.save(externalEntity.let { DsMember(
             name = it.nickname ?: it.username,
             guildId = it.guildId.lvalue,

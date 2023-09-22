@@ -11,7 +11,7 @@
 
     <changeSet id="createTableDsUser" author="ya0igoddess">
         <createTable tableName="discord_user">
-            <column name="id" type="bigint" autoIncrement="true">
+            <column name="id" type="bigint">
                 <constraints primaryKey="true"/>
             </column>
             <column name="name" type="varchar(256)"/>
@@ -20,7 +20,7 @@
 
     <changeSet id="createTableDsGuild" author="ya0igoddess">
         <createTable tableName="discord_guild">
-            <column name="id" type="bigint" autoIncrement="true">
+            <column name="id" type="bigint">
                 <constraints primaryKey="true"/>
             </column>
             <column name="name" type="varchar"/>
@@ -29,7 +29,7 @@
 
     <changeSet id="createTableDiscordMember" author="ya0igoddess">
         <createTable tableName="discord_member">
-            <column name="id" type="bigint" autoIncrement="true">
+            <column name="id" type="bigserial" autoIncrement="true">
                 <constraints primaryKey="true"/>
             </column>
             <column name="name" type="varchar"/>

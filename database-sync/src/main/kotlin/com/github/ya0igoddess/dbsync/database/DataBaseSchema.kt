@@ -1,6 +1,7 @@
 package com.github.ya0igoddess.dbsync.database
 
 import com.github.ya0igoddess.dbsync.extensions.DBSyncExtension
+import com.github.ya0igoddess.dbsync.model.discord.AbstractDsMember
 import com.github.ya0igoddess.dbsync.model.discord.DsUser
 import com.github.ya0igoddess.dbsync.model.discord.DsGuild
 import com.github.ya0igoddess.dbsync.model.discord.DsMember
@@ -34,4 +35,21 @@ object Members: PostgresqlTable<DsMember>("${DBSyncExtension.code}.discord_membe
     }
 }
 
-val tables = tables().postgresql(Users, Guilds, Members)
+/**
+ * Temporary table until bigSerial on non-nullable Long is not presented in KOTYSA
+ */
+object AbstractMembers: PostgresqlTable<AbstractDsMember>("${DBSyncExtension.code}.discord_member") {
+    val id = bigSerial(AbstractDsMember::id)
+        .primaryKey()
+    val name = varchar(AbstractDsMember::name)
+    val guildId = bigInt(AbstractDsMember::guildId, "guild_id")
+        .foreignKey(Guilds.id)
+    val userId = bigInt(AbstractDsMember::userId, "user_id")
+        .foreignKey(Users.id)
+
+    init {
+        index(setOf(guildId, userId), type = IndexType.UNIQUE, indexName =  "guild_user_index")
+    }
+}
+
+val tables = tables().postgresql(Users, Guilds, Members, AbstractMembers)

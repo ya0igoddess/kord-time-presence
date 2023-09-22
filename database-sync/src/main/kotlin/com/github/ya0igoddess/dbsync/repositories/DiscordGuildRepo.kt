@@ -13,7 +13,7 @@ interface IDiscordGuildRepoService : CRUDService<DsGuild, Long>, ISynchronizatio
 
 class DiscordGuildCRUDRepo(
         sqlClient: R2dbcSqlClient
-) : KotysaLongCRUDRepository<DsGuild>(Guilds, Guilds.id, sqlClient)
+): KotysaLongCRUDRepository<DsGuild>(Guilds, Guilds.id, sqlClient)
 
 class DiscordGuildRepoService(
         private val dsGuildCRUDRepo: DiscordGuildCRUDRepo
