@@ -1,6 +1,9 @@
 import com.github.ya0igoddess.dbsync.extensions.DBSyncExtension
 import com.kotlindiscord.kord.extensions.ExtensibleBot
+import dev.kord.gateway.Intent
+import dev.kord.gateway.PrivilegedIntent
 
+@OptIn(PrivilegedIntent::class)
 suspend fun main(args: Array<String>) {
     val token = System.getenv("SKAARD_TOKEN")
     val defaultGuildId = System.getenv("TEST_GUILD_ID")
@@ -12,6 +15,11 @@ suspend fun main(args: Array<String>) {
 
         applicationCommands {
             defaultGuild(defaultGuildId)
+        }
+
+        intents {
+            +Intent.GuildMembers
+            +Intent.GuildPresences
         }
     }
     bot.start()
