@@ -24,9 +24,9 @@ object Members: PostgresqlTable<DsMember>("${DBSyncExtension.code}.discord_membe
     val id = bigInt(DsMember::id)
         .primaryKey()
     val name = varchar(DsMember::name)
-    val guildId = bigInt(DsMember::guildId)
+    val guildId = bigInt(DsMember::guildId, "guild_id")
         .foreignKey(Guilds.id)
-    val userId = bigInt(DsMember::userId)
+    val userId = bigInt(DsMember::userId, "user_id")
         .foreignKey(Users.id)
 
     init {

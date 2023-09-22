@@ -4,6 +4,7 @@ import com.github.ya0igoddess.dbsync.database.Members
 import com.github.ya0igoddess.dbsync.model.discord.DsGuild
 import com.github.ya0igoddess.dbsync.model.discord.DsMember
 import com.github.ya0igoddess.dbsync.model.discord.DsUser
+import com.github.ya0igoddess.dbsync.model.discord.lvalue
 import com.github.ya0igoddess.dbsync.service.common.CRUDService
 import com.github.ya0igoddess.dbsync.service.common.ISynchronizationService
 import com.github.ya0igoddess.dbsync.service.common.KotysaLongCRUDRepository
@@ -30,6 +31,8 @@ class DiscordMemberCrudRepo(
 }
 
 class DiscordMemberRepoService(
+    private val userService: IDiscordUserRepoService,
+    private val guildService: IDiscordGuildRepoService,
     private val repo: DiscordMemberCrudRepo
 ): IDiscordMemberRepoService, CRUDService<DsMember, Long> by repo {
     override suspend fun getByGuildAndUser(guildId: Long, userId: Long): DsMember? {
@@ -43,8 +46,8 @@ class DiscordMemberRepoService(
     override suspend fun createFromExternalEntity(externalEntity: Member): DsMember {
         return repo.save(externalEntity.let { DsMember(
             name = it.nickname ?: it.username,
-            guildId = it.guildId.value.toLong(),
-            userId = it.asUser().id.value.toLong()
+            guildId = it.guildId.lvalue,
+            userId = it.asUser().id.lvalue
         ) })
     }
 
