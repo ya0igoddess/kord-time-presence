@@ -6,16 +6,12 @@ import com.github.ya0igoddess.dbsync.migration.loadLiquibase
 import com.github.ya0igoddess.dbsync.repositories.IDiscordChannelRepoService
 import com.github.ya0igoddess.dbsync.repositories.IDiscordGuildRepoService
 import com.github.ya0igoddess.dbsync.repositories.IDiscordMemberRepoService
-import com.github.ya0igoddess.dbsync.repositories.IDiscordUserRepoService
 import com.kotlindiscord.kord.extensions.extensions.Extension
 import com.kotlindiscord.kord.extensions.extensions.event
-import dev.kord.common.entity.ChannelType
 import dev.kord.core.entity.channel.GuildChannel
 import dev.kord.core.event.channel.ChannelCreateEvent
-import dev.kord.core.event.channel.TextChannelCreateEvent
 import dev.kord.core.event.guild.GuildCreateEvent
 import dev.kord.core.event.guild.MemberJoinEvent
-import kotlinx.coroutines.flow.collect
 import org.koin.core.component.inject
 
 
