@@ -47,4 +47,19 @@
             </column>
         </createTable>
     </changeSet>
+
+    <changeSet id="createTableDiscordChannel" author="ya0igoddess">
+        <createTable tableName="discord_channel">
+            <column name="id" type="bigint">
+                <constraints primaryKey="true"/>
+            </column>
+            <column name="name" type="varchar"/>
+            <column name="guild_id" type="bigint">
+                <constraints
+                        foreignKeyName="fk_channel_guild"
+                        referencedTableName="discord_guild"
+                        referencedColumnNames="id"/>
+            </column>
+        </createTable>
+    </changeSet>
 </databaseChangeLog>
