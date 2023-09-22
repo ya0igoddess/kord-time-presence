@@ -1,6 +1,6 @@
 package com.github.ya0igoddess.dbsync.database
 
-import com.github.ya0igoddess.dbsync.DBSyncExtension
+import com.github.ya0igoddess.dbsync.extensions.DBSyncExtension
 import com.github.ya0igoddess.dbsync.model.discord.DsUser
 import com.github.ya0igoddess.dbsync.model.discord.DsGuild
 import com.github.ya0igoddess.dbsync.model.discord.DsMember

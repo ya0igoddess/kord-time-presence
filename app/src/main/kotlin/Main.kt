@@ -1,4 +1,4 @@
-import com.github.ya0igoddess.dbsync.DBSyncExtension
+import com.github.ya0igoddess.dbsync.extensions.DBSyncExtension
 import com.kotlindiscord.kord.extensions.ExtensibleBot
 
 suspend fun main(args: Array<String>) {
