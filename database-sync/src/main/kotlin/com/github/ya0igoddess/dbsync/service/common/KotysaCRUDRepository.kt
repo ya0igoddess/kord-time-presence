@@ -3,6 +3,7 @@ package com.github.ya0igoddess.dbsync.service.common
 import kotlinx.coroutines.flow.Flow
 import org.ufoss.kotysa.*
 import org.ufoss.kotysa.columns.LongDbBigIntColumnNotNull
+import org.ufoss.kotysa.columns.LongDbBigSerialColumnNotNull
 
 abstract class KotysaAbstractCRUDRepository<T : Any, ID : Any>(
         open val table: AbstractTable<T>,
@@ -20,7 +21,7 @@ abstract class KotysaAbstractCRUDRepository<T : Any, ID : Any>(
 
 abstract class KotysaLongCRUDRepository<T: Any>(
         table: AbstractTable<T>,
-        override val tableIdColumn: LongDbBigIntColumnNotNull<T>,
+        override val tableIdColumn: LongColumnNotNull<T>,
         sqlClient: R2dbcSqlClient,
 ): KotysaAbstractCRUDRepository<T, Long>(table, tableIdColumn, sqlClient) {
     override suspend fun getById(id: Long): T? = (sqlClient select table from table where tableIdColumn eq id).fetchFirstOrNull()
