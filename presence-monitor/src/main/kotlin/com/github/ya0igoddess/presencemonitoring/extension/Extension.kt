@@ -3,7 +3,10 @@ package com.github.ya0igoddess.presencemonitoring.extension
 import com.github.ya0igoddess.dbsync.config.settings.KordDBSettings
 import com.github.ya0igoddess.dbsync.migration.loadLiquibase
 import com.github.ya0igoddess.presencemonitoring.config.PresenceMonitoringModule
+import com.github.ya0igoddess.presencemonitoring.handlers.VoiceStatusChangeHandler
 import com.kotlindiscord.kord.extensions.extensions.Extension
+import com.kotlindiscord.kord.extensions.extensions.event
+import dev.kord.core.event.user.VoiceStateUpdateEvent
 import org.koin.core.component.inject
 
 class PresenceMonitorExtension: Extension() {
@@ -21,6 +24,13 @@ class PresenceMonitorExtension: Extension() {
         val settings: KordDBSettings by inject()
         loadLiquibase(settings.jdbc!!, name, "changelog/kord-presence-monitor/main-changelog.xml")
 
+        val voiceStatusChangeHandler: VoiceStatusChangeHandler by inject()
+
+        event<VoiceStateUpdateEvent> {
+            action {
+                voiceStatusChangeHandler.handle(event)
+            }
+        }
     }
 
 }
