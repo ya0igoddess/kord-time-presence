@@ -9,4 +9,31 @@
         http://www.liquibase.org/xml/ns/dbchangelog-ext http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-ext.xsd
         http://www.liquibase.org/xml/ns/pro http://www.liquibase.org/xml/ns/pro/liquibase-pro-latest.xsd">
 
+    <changeSet id="createTableConnectionPeriod" author="ya0igoddess">
+        <createTable tableName="connection_period">
+            <column name="id" type="bigserial" autoIncrement="true">
+                <constraints primaryKey="true"/>
+            </column>
+            <column name="member_id" type="bigint">
+            </column>
+            <column name="channel_id" type="bigint">
+            </column>
+            <column name="start_dttm" type="timestamp"/>
+            <column name="end_dttm" type="timestamp"/>
+        </createTable>
+        <addForeignKeyConstraint
+                baseColumnNames="member_id"
+                baseTableName="connection_period"
+                constraintName="fk_period_member"
+                referencedColumnNames="id"
+                referencedTableName="discord_member"
+                referencedTableSchemaName="kord_db_sync"/>
+        <addForeignKeyConstraint
+                baseColumnNames="channel_id"
+                baseTableName="connection_period"
+                constraintName="fk_period_channel"
+                referencedColumnNames="id"
+                referencedTableName="discord_channel"
+                referencedTableSchemaName="kord_db_sync"/>
+    </changeSet>
 </databaseChangeLog>

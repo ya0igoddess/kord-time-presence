@@ -10,12 +10,12 @@ object ConnectionPeriods: PostgresqlTable<VoiceConnectionPeriod>(
     "${PresenceMonitorExtension.code}.connection_period"
 ) {
     val id = bigSerial(VoiceConnectionPeriod::id).primaryKey()
-    val memberId = bigInt(VoiceConnectionPeriod::memberId, "member")
+    val memberId = bigInt(VoiceConnectionPeriod::memberId, "member_id")
         .foreignKey(Members.id)
-    val guildId = bigInt(VoiceConnectionPeriod::channelId, "channel")
+    val guildId = bigInt(VoiceConnectionPeriod::channelId, "channel_id")
         .foreignKey(Channels.id)
-    val start = timestamp(VoiceConnectionPeriod::start)
-    val end = timestamp(VoiceConnectionPeriod::end)
+    val start = timestamp(VoiceConnectionPeriod::start, "start_dttm")
+    val end = timestamp(VoiceConnectionPeriod::end, "end_dttm")
 }
 
 val presenceMonitoringTables = listOf(ConnectionPeriods)
