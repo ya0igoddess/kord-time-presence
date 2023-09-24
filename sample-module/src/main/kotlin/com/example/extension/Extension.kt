@@ -11,7 +11,7 @@ import com.kotlindiscord.kord.extensions.extensions.Extension
 import com.kotlindiscord.kord.extensions.extensions.event
 import org.koin.core.component.inject
 
-class PresenceMonitorExtension: Extension() {
+class SampleExtension: Extension() {
 
     companion object {
         const val code = "sample_module"

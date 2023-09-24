@@ -19,7 +19,7 @@
         </createTable>
         <addForeignKeyConstraint
                 baseColumnNames="member_id"
-                baseTableName="example"
+                baseTableName="sample"
                 constraintName="fk_sample_member"
                 referencedColumnNames="id"
                 referencedTableName="discord_member"

@@ -1,3 +1,4 @@
+import com.example.extension.SampleExtension
 import com.github.ya0igoddess.dbsync.extensions.DBSyncExtension
 import com.github.ya0igoddess.presencemonitoring.extension.PresenceMonitorExtension
 import com.kotlindiscord.kord.extensions.ExtensibleBot
@@ -12,6 +13,7 @@ suspend fun main(args: Array<String>) {
     val bot = ExtensibleBot(token) {
         extensions {
             add(::DBSyncExtension)
+            add(::SampleExtension)
             add(::PresenceMonitorExtension)
         }
 
