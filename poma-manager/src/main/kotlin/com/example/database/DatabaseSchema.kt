@@ -10,7 +10,7 @@ object PomaAccounts: PostgresqlTable<PomaAccount>("${PomaManagerExt.code}.poma_a
     val id = bigSerial(PomaAccount::id)
         .primaryKey()
     val money = bigInt(PomaAccount::money)
-    val memberId = bigInt(PomaAccount::userId, "user_id")
+    val memberId = bigInt(PomaAccount::userId, "member_id")
         .foreignKey(Members.id)
 }
 
