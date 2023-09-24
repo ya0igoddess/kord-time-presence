@@ -2,16 +2,19 @@ package com.example.service
 
 import com.example.model.Poma
 import com.example.model.PomaAccount
+import com.example.repositories.IPomaAccountRepoService
+import com.example.repositories.IPomaRepoService
 import com.example.repositories.PomaAccountRepoService
 import com.example.repositories.PomaRepoService
 import com.github.ya0igoddess.dbsync.model.discord.DsMember
 import com.github.ya0igoddess.dbsync.repositories.DiscordMemberRepoService
+import com.github.ya0igoddess.dbsync.repositories.IDiscordMemberRepoService
 import kotlinx.coroutines.flow.Flow
 
 class PomaAccountService(
-    private val pomaAccountRepoService: PomaAccountRepoService,
-    private val discordMemberRepoService: DiscordMemberRepoService,
-    private val pomaRepoService: PomaRepoService
+    private val pomaAccountRepoService: IPomaAccountRepoService,
+    private val discordMemberRepoService: IDiscordMemberRepoService,
+    private val pomaRepoService: IPomaRepoService
 ) : IPomaAccountService {
     override suspend fun createPomaAccount(member: DsMember): PomaAccount {
         val account = PomaAccount(
