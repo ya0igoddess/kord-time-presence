@@ -2,6 +2,8 @@ package com.github.ya0igoddess.dbsync.extensions
 
 import com.github.ya0igoddess.dbsync.config.DBSyncModule
 import com.github.ya0igoddess.dbsync.config.settings.KordDBSettings
+import com.github.ya0igoddess.dbsync.database.SkaardModuleDatabase
+import com.github.ya0igoddess.dbsync.database.kordDBSyncTables
 import com.github.ya0igoddess.dbsync.migration.loadLiquibase
 import com.github.ya0igoddess.dbsync.repositories.IDiscordChannelRepoService
 import com.github.ya0igoddess.dbsync.repositories.IDiscordGuildRepoService
@@ -26,6 +28,8 @@ class DBSyncExtension: Extension() {
     override suspend fun setup() {
         getKoin().loadModules(listOf(DBSyncModule))
 
+        val databaseModule: SkaardModuleDatabase by inject()
+        databaseModule.addTables(kordDBSyncTables)
         val guildService: IDiscordGuildRepoService by inject()
         val memberService: IDiscordMemberRepoService by inject()
         val channelService: IDiscordChannelRepoService by inject()

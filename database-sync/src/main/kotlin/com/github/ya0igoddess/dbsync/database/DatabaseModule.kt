@@ -14,5 +14,5 @@ val dataBaseModule = module {
     factory<KordDBSettings> { FileSettingsProvider().get() }
     single<SkaardModuleDatabase> { SkaardModuleDatabase(get()) }
     single<ConnectionFactory> { get<SkaardModuleDatabase>().factory }
-    single<R2dbcSqlClient>  { get<ConnectionFactory>().coSqlClient(tables) }
+    single<R2dbcSqlClient>  { get<SkaardModuleDatabase>().sqlClient }
 }

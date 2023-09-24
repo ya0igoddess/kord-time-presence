@@ -57,4 +57,9 @@ object Channels: PostgresqlTable<DsChannel>("${DBSyncExtension.code}.discord_cha
         .foreignKey(Guilds.id)
 }
 
-val tables = tables().postgresql(Users, Guilds, Members, AbstractMembers, Channels)
+data class FakeObj(val id: Long)
+object FakeTable: PostgresqlTable<FakeObj>("") {
+    val id = bigInt(FakeObj::id).primaryKey()
+}
+
+val kordDBSyncTables = listOf(Users, Guilds, Members, AbstractMembers, Channels)
