@@ -16,4 +16,5 @@ pluginManagement {
 include("database-sync")
 include("sample-module")
 include("presence-monitor")
+include("poma-manager")
 if (System.getenv().containsKey("SKAARD_DEVELOP")) include("app")
