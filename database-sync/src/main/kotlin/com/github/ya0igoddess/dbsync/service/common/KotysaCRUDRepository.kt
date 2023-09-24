@@ -6,7 +6,7 @@ import org.ufoss.kotysa.columns.LongDbBigIntColumnNotNull
 import org.ufoss.kotysa.columns.LongDbBigSerialColumnNotNull
 
 abstract class KotysaAbstractCRUDRepository<T : Any, ID : Any>(
-        open val table: AbstractTable<T>,
+        protected val table: AbstractTable<T>,
         open val tableIdColumn: Column<T, ID>,
         protected val sqlClient: R2dbcSqlClient,
 ) : CRUDService<T, ID> {
