@@ -9,20 +9,38 @@
         http://www.liquibase.org/xml/ns/dbchangelog-ext http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-ext.xsd
         http://www.liquibase.org/xml/ns/pro http://www.liquibase.org/xml/ns/pro/liquibase-pro-latest.xsd">
 
-    <changeSet id="sample changeset" author="example">
-        <createTable tableName="sample">
+    <changeSet id="add pomaAccount" author="ya0igoddes">
+        <createTable tableName="poma_account">
             <column name="id" type="bigserial" autoIncrement="true">
                 <constraints primaryKey="true"/>
             </column>
-            <column name="member_id" type="bigint">
-            </column>
+            <column name="money" type="bigint"/>
+            <column name="member_id" type="bigint"/>
         </createTable>
         <addForeignKeyConstraint
                 baseColumnNames="member_id"
-                baseTableName="example"
-                constraintName="fk_sample_member"
+                baseTableName="poma_account"
+                constraintName="fk_account_member"
                 referencedColumnNames="id"
                 referencedTableName="discord_member"
                 referencedTableSchemaName="kord_db_sync"/>
+    </changeSet>
+
+    <changeSet id="add Poma" author="ya0igoddess">
+        <createTable tableName="poma">
+            <column name="id" type="bigserial"/>
+            <column name="account_id" type="bigint">
+                <constraints
+                        foreignKeyName="fk_poma_account"
+                        referencedTableName="poma_account"
+                        referencedColumnNames="id"/>
+            </column>
+            <column name="name" type="varchar(256)"/>
+            <column name="level" type="integer"/>
+            <column name="rarity" type="integer"/>
+            <column name="strength" type="integer"/>
+            <column name="agility" type="integer"/>
+            <column name="intelligence" type="integer"/>
+        </createTable>
     </changeSet>
 </databaseChangeLog>

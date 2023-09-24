@@ -1,3 +1,4 @@
+import com.example.extension.PomaManagerExt
 import com.github.ya0igoddess.dbsync.extensions.DBSyncExtension
 import com.github.ya0igoddess.presencemonitoring.extension.PresenceMonitorExtension
 import com.kotlindiscord.kord.extensions.ExtensibleBot
@@ -13,6 +14,7 @@ suspend fun main(args: Array<String>) {
         extensions {
             add(::DBSyncExtension)
             add(::PresenceMonitorExtension)
+            add(::PomaManagerExt)
         }
 
         applicationCommands {
