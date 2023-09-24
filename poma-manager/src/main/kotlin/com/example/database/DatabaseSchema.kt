@@ -1,15 +1,30 @@
 package com.example.database
 
+import com.example.extension.PomaManagerExt
+import com.example.model.Poma
+import com.example.model.PomaAccount
 import com.github.ya0igoddess.dbsync.database.Members
-import com.example.extension.PresenceMonitorExtension
 import org.ufoss.kotysa.postgresql.PostgresqlTable
 
-object SampleTable: PostgresqlTable<SampleModel>(
-    "${PresenceMonitorExtension.code}.sample"
-) {
-    val id = bigSerial(SampleModel::id).primaryKey()
-    val memberId = bigInt(SampleModel::memberId, "member_id")
+object PomaAccounts: PostgresqlTable<PomaAccount>("${PomaManagerExt.code}.poma_account") {
+    val id = bigSerial(PomaAccount::id)
+        .primaryKey()
+    val money = bigInt(PomaAccount::money)
+    val memberId = bigInt(PomaAccount::userId, "user_id")
         .foreignKey(Members.id)
 }
 
-val sampleTables = listOf(SampleTable)
+object Pomas: PostgresqlTable<Poma>("${PomaManagerExt.code}.poma") {
+    val id = bigSerial(Poma::id)
+        .primaryKey()
+    val accountId = bigInt(Poma::accountId)
+        .foreignKey(PomaAccounts.id)
+    val name = varchar(Poma::name)
+    val level = integer(Poma::level)
+    val rarity = integer(Poma::rarity)
+    val strength = integer(Poma::strength)
+    val agility = integer(Poma::agility)
+    val intelligence = integer(Poma::intelligence)
+}
+
+val tables = listOf(PomaAccounts, Pomas)
