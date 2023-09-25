@@ -1,6 +1,7 @@
 package com.example.extension
 
 import com.example.commands.CreatePomaAccountCommand
+import com.example.commands.PomaManagerCommand
 import com.github.ya0igoddess.dbsync.config.settings.KordDBSettings
 import com.github.ya0igoddess.dbsync.database.SkaardModuleDatabase
 import com.github.ya0igoddess.dbsync.migration.loadLiquibase
@@ -27,8 +28,8 @@ class PomaManagerExt: Extension() {
         val settings: KordDBSettings by inject()
         loadLiquibase(settings.jdbc!!, name, "changelog/poma-manager/main-changelog.xml")
 
-        val createPomaAccountCommand: CreatePomaAccountCommand by inject()
-        ephemeralSlashCommand(createPomaAccountCommand.builder)
+        ephemeralSlashCommand(inject<CreatePomaAccountCommand>().value.builder)
+        ephemeralSlashCommand(inject<PomaManagerCommand>().value.builder)
     }
 
 }

@@ -10,6 +10,7 @@ import com.github.ya0igoddess.dbsync.model.discord.DsMember
 import com.github.ya0igoddess.dbsync.repositories.DiscordMemberRepoService
 import com.github.ya0igoddess.dbsync.repositories.IDiscordMemberRepoService
 import kotlinx.coroutines.flow.Flow
+import kotlin.random.Random
 
 class PomaAccountService(
     private val pomaAccountRepoService: IPomaAccountRepoService,
@@ -33,7 +34,22 @@ class PomaAccountService(
         return pomaRepoService.getByAccountId(pomaAccount.id!!)
     }
 
+    override suspend fun rollNewPoma(pomaAccount: PomaAccount): Poma {
+        val poma = generateRandPoma().copy(accountId = pomaAccount.id!!)
+        return pomaRepoService.save(poma)
+    }
+
     override fun changeMoney(pomaAccount: PomaAccount, money: Long) {
         TODO("Not yet implemented")
+    }
+
+    private fun generateRandPoma(): Poma {
+        val randomValue = Random.nextInt(1,3)
+        return when(randomValue) {
+            1 -> Poma(null,0,"poma$randomValue", 1, randomValue, 0, 0, 0)
+            2 -> Poma(null,0,"poma$randomValue", 1, randomValue, 0, 0, 0)
+            3 -> Poma(null,0,"poma$randomValue", 1, randomValue, 0, 0, 0)
+            else -> Poma(null,0,"poma$randomValue", 1, randomValue, 0, 0, 0)
+        }
     }
 }

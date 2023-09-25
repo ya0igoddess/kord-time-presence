@@ -17,7 +17,7 @@ object PomaAccounts: PostgresqlTable<PomaAccount>("${PomaManagerExt.code}.poma_a
 object Pomas: PostgresqlTable<Poma>("${PomaManagerExt.code}.poma") {
     val id = bigSerial(Poma::id)
         .primaryKey()
-    val accountId = bigInt(Poma::accountId)
+    val accountId = bigInt(Poma::accountId, "account_id")
         .foreignKey(PomaAccounts.id)
     val name = varchar(Poma::name)
     val level = integer(Poma::level)

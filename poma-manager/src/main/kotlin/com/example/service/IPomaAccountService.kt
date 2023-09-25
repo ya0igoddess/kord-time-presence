@@ -11,6 +11,8 @@ interface IPomaAccountService {
     suspend fun getMemberByAccount(pomaAccount: PomaAccount): DsMember?
     suspend fun getAccountPomas(pomaAccount: PomaAccount): Flow<Poma>
 
+    suspend fun rollNewPoma(pomaAccount: PomaAccount): Poma
+
     /**
      * @param money Money delta value, may be negative.
      */
