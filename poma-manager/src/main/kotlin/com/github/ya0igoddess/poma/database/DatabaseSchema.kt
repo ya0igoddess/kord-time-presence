@@ -1,8 +1,8 @@
-package com.example.database
+package com.github.ya0igoddess.poma.database
 
-import com.example.extension.PomaManagerExt
-import com.example.model.Poma
-import com.example.model.PomaAccount
+import com.github.ya0igoddess.poma.extension.PomaManagerExt
+import com.github.ya0igoddess.poma.model.Poma
+import com.github.ya0igoddess.poma.model.PomaAccount
 import com.github.ya0igoddess.dbsync.database.Members
 import org.ufoss.kotysa.postgresql.PostgresqlTable
 

@@ -1,11 +1,11 @@
-package com.example.service
+package com.github.ya0igoddess.poma.service
 
-import com.example.model.Poma
-import com.example.model.PomaAccount
-import com.example.repositories.IPomaAccountRepoService
-import com.example.repositories.IPomaRepoService
-import com.example.repositories.PomaAccountRepoService
-import com.example.repositories.PomaRepoService
+import com.github.ya0igoddess.poma.model.Poma
+import com.github.ya0igoddess.poma.model.PomaAccount
+import com.github.ya0igoddess.poma.repositories.IPomaAccountRepoService
+import com.github.ya0igoddess.poma.repositories.IPomaRepoService
+import com.github.ya0igoddess.poma.repositories.PomaAccountRepoService
+import com.github.ya0igoddess.poma.repositories.PomaRepoService
 import com.github.ya0igoddess.dbsync.model.discord.DsMember
 import com.github.ya0igoddess.dbsync.repositories.DiscordMemberRepoService
 import com.github.ya0igoddess.dbsync.repositories.IDiscordMemberRepoService

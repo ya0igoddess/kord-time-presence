@@ -1,7 +1,7 @@
-package com.example.service
+package com.github.ya0igoddess.poma.service
 
-import com.example.model.Poma
-import com.example.model.PomaAccount
+import com.github.ya0igoddess.poma.model.Poma
+import com.github.ya0igoddess.poma.model.PomaAccount
 import com.github.ya0igoddess.dbsync.model.discord.DsMember
 import kotlinx.coroutines.flow.Flow
 

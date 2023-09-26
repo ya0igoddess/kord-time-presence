@@ -1,7 +1,7 @@
-package com.example.repositories
+package com.github.ya0igoddess.poma.repositories
 
-import com.example.database.Pomas
-import com.example.model.Poma
+import com.github.ya0igoddess.poma.database.Pomas
+import com.github.ya0igoddess.poma.model.Poma
 import com.github.ya0igoddess.dbsync.service.common.CRUDService
 import com.github.ya0igoddess.dbsync.service.common.KotysaLongCRUDRepository
 import kotlinx.coroutines.flow.Flow

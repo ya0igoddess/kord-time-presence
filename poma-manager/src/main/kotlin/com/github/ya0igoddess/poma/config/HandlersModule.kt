@@ -1,4 +1,4 @@
-package com.example.config
+package com.github.ya0igoddess.poma.config
 
 import org.koin.dsl.module
 

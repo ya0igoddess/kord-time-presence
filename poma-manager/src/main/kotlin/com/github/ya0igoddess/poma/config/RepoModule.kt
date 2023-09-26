@@ -1,7 +1,7 @@
-package com.example.config
+package com.github.ya0igoddess.poma.config
 
-import com.example.repositories.PomaAccountCRUDRepo
-import com.example.repositories.PomaCRUDRepo
+import com.github.ya0igoddess.poma.repositories.PomaAccountCRUDRepo
+import com.github.ya0igoddess.poma.repositories.PomaCRUDRepo
 import com.github.ya0igoddess.dbsync.database.dataBaseModule
 import org.koin.core.module.dsl.singleOf
 import org.koin.dsl.module

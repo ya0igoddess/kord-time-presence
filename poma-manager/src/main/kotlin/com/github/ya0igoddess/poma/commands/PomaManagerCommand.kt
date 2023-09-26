@@ -1,8 +1,8 @@
-package com.example.commands
+package com.github.ya0igoddess.poma.commands
 
-import com.example.repositories.IPomaAccountRepoService
-import com.example.repositories.IPomaRepoService
-import com.example.service.IPomaAccountService
+import com.github.ya0igoddess.poma.repositories.IPomaAccountRepoService
+import com.github.ya0igoddess.poma.repositories.IPomaRepoService
+import com.github.ya0igoddess.poma.service.IPomaAccountService
 import com.github.ya0igoddess.dbsync.model.discord.lvalue
 import com.github.ya0igoddess.dbsync.repositories.IDiscordMemberRepoService
 import com.kotlindiscord.kord.extensions.DiscordRelayedException
@@ -36,7 +36,7 @@ class PomaManagerCommand(
                 val pomas = pomaAccountService.getAccountPomas(account!!)
                 components(30.toDuration(DurationUnit.SECONDS)) {
                     ephemeralButton { label = "Roll New Poma(\$10)"; action { val newpoma = pomaAccountService.rollNewPoma(account); respond { content = newpoma.toString() } } }
-                    ephemeralButton(1,PomaSelector("Delete Poma", pomas, pomaRepoService::delete).builder)
+                    ephemeralButton(1, PomaSelector("Delete Poma", pomas, pomaRepoService::delete).builder)
                 }
             }
         }

@@ -1,6 +1,6 @@
-package com.example.commands
+package com.github.ya0igoddess.poma.commands
 
-import com.example.service.IPomaAccountService
+import com.github.ya0igoddess.poma.service.IPomaAccountService
 import com.github.ya0igoddess.dbsync.repositories.IDiscordMemberRepoService
 import com.kotlindiscord.kord.extensions.commands.Arguments
 import com.kotlindiscord.kord.extensions.commands.application.slash.EphemeralSlashCommand

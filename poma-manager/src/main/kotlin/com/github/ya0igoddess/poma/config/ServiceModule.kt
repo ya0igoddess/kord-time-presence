@@ -1,7 +1,7 @@
-package com.example.config
+package com.github.ya0igoddess.poma.config
 
-import com.example.service.IPomaAccountService
-import com.example.service.PomaAccountService
+import com.github.ya0igoddess.poma.service.IPomaAccountService
+import com.github.ya0igoddess.poma.service.PomaAccountService
 import org.koin.dsl.module
 
 val serviceModule = module {

@@ -1,12 +1,12 @@
-package com.example.extension
+package com.github.ya0igoddess.poma.extension
 
-import com.example.commands.CreatePomaAccountCommand
-import com.example.commands.PomaManagerCommand
+import com.github.ya0igoddess.poma.commands.CreatePomaAccountCommand
+import com.github.ya0igoddess.poma.commands.PomaManagerCommand
 import com.github.ya0igoddess.dbsync.config.settings.KordDBSettings
 import com.github.ya0igoddess.dbsync.database.SkaardModuleDatabase
 import com.github.ya0igoddess.dbsync.migration.loadLiquibase
-import com.example.config.PomaModule
-import com.example.database.tables
+import com.github.ya0igoddess.poma.config.PomaModule
+import com.github.ya0igoddess.poma.database.tables
 import com.kotlindiscord.kord.extensions.extensions.Extension
 import com.kotlindiscord.kord.extensions.extensions.ephemeralSlashCommand
 import org.koin.core.component.inject

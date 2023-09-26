@@ -1,7 +1,7 @@
-package com.example.config
+package com.github.ya0igoddess.poma.config
 
-import com.example.commands.CreatePomaAccountCommand
-import com.example.commands.PomaManagerCommand
+import com.github.ya0igoddess.poma.commands.CreatePomaAccountCommand
+import com.github.ya0igoddess.poma.commands.PomaManagerCommand
 import org.koin.dsl.module
 
 val commandsModule = module {

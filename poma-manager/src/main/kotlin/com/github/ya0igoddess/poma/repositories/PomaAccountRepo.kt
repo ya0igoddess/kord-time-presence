@@ -1,7 +1,7 @@
-package com.example.repositories
+package com.github.ya0igoddess.poma.repositories
 
-import com.example.database.PomaAccounts
-import com.example.model.PomaAccount
+import com.github.ya0igoddess.poma.database.PomaAccounts
+import com.github.ya0igoddess.poma.model.PomaAccount
 import com.github.ya0igoddess.dbsync.service.common.CRUDService
 import com.github.ya0igoddess.dbsync.service.common.KotysaLongCRUDRepository
 import org.ufoss.kotysa.R2dbcSqlClient

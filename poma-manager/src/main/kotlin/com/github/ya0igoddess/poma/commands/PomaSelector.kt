@@ -1,6 +1,6 @@
-package com.example.commands
+package com.github.ya0igoddess.poma.commands
 
-import com.example.model.Poma
+import com.github.ya0igoddess.poma.model.Poma
 import com.kotlindiscord.kord.extensions.commands.Arguments
 import com.kotlindiscord.kord.extensions.commands.application.slash.EphemeralSlashCommand
 import com.kotlindiscord.kord.extensions.components.buttons.EphemeralInteractionButton

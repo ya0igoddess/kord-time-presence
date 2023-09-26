@@ -1,4 +1,4 @@
-package com.example.model
+package com.github.ya0igoddess.poma.model
 
 data class Poma(
     val id: Long?,
