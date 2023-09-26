@@ -1,5 +1,6 @@
 import com.example.extension.SampleExtension
 import com.github.ya0igoddess.dbsync.extensions.DBSyncExtension
+import com.github.ya0igoddess.poma.extension.PomaManagerExt
 import com.github.ya0igoddess.presencemonitoring.extension.PresenceMonitorExtension
 import com.kotlindiscord.kord.extensions.ExtensibleBot
 import dev.kord.gateway.Intent
@@ -15,6 +16,7 @@ suspend fun main(args: Array<String>) {
             add(::DBSyncExtension)
             add(::SampleExtension)
             add(::PresenceMonitorExtension)
+            add(::PomaManagerExt)
         }
 
         applicationCommands {
