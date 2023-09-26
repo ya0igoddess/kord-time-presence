@@ -9,6 +9,8 @@ import com.github.ya0igoddess.poma.repositories.PomaRepoService
 import com.github.ya0igoddess.dbsync.model.discord.DsMember
 import com.github.ya0igoddess.dbsync.repositories.DiscordMemberRepoService
 import com.github.ya0igoddess.dbsync.repositories.IDiscordMemberRepoService
+import com.github.ya0igoddess.poma.pomagenerator.PomaGenerator
+import com.kotlindiscord.kord.extensions.DiscordRelayedException
 import kotlinx.coroutines.flow.Flow
 import kotlin.random.Random
 
@@ -36,6 +38,7 @@ class PomaAccountService(
 
     override suspend fun rollNewPoma(pomaAccount: PomaAccount): Poma {
         val poma = generateRandPoma().copy(accountId = pomaAccount.id!!)
+
         return pomaRepoService.save(poma)
     }
 
@@ -43,13 +46,16 @@ class PomaAccountService(
         TODO("Not yet implemented")
     }
 
+    val pomaGenerator = PomaGenerator()
+
     private fun generateRandPoma(): Poma {
-        val randomValue = Random.nextInt(1,3)
-        return when(randomValue) {
-            1 -> Poma(null,0,"poma$randomValue", 1, randomValue, 0, 0, 0)
-            2 -> Poma(null,0,"poma$randomValue", 1, randomValue, 0, 0, 0)
-            3 -> Poma(null,0,"poma$randomValue", 1, randomValue, 0, 0, 0)
-            else -> Poma(null,0,"poma$randomValue", 1, randomValue, 0, 0, 0)
+        val randomValue = Random.nextInt(0, 100)
+        return if (randomValue < 74) {
+            pomaGenerator.generateRandomPoma(1)
+        } else if (randomValue < 94) {
+            pomaGenerator.generateRandomPoma(2)
+        } else {
+            pomaGenerator.generateRandomPoma(3)
         }
     }
 }
