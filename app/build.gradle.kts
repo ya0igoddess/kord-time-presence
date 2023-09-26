@@ -14,6 +14,7 @@ dependencies {
     implementation(project(":database-sync"))
     implementation(project(":presence-monitor"))
     implementation(project(":poma-manager"))
+    implementation(project(":sample-module"))
     implementation(kotlin("stdlib-jdk8"))
 
     runtimeOnly("org.postgresql:r2dbc-postgresql:1.0.2.RELEASE")

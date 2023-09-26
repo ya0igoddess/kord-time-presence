@@ -8,5 +8,5 @@
         http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-latest.xsd
         http://www.liquibase.org/xml/ns/dbchangelog-ext http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-ext.xsd
         http://www.liquibase.org/xml/ns/pro http://www.liquibase.org/xml/ns/pro/liquibase-pro-latest.xsd">
-    <include file="changelog/kord-presence-monitor/0.0.1-sample-module.xml"/>
+    <include file="changelog/sample-module/0.0.1-sample-module.xml"/>
 </databaseChangeLog>

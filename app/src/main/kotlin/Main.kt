@@ -1,3 +1,4 @@
+import com.example.extension.SampleExtension
 import com.example.extension.PomaManagerExt
 import com.github.ya0igoddess.dbsync.extensions.DBSyncExtension
 import com.github.ya0igoddess.presencemonitoring.extension.PresenceMonitorExtension
@@ -13,6 +14,7 @@ suspend fun main(args: Array<String>) {
     val bot = ExtensibleBot(token) {
         extensions {
             add(::DBSyncExtension)
+            add(::SampleExtension)
             add(::PresenceMonitorExtension)
             add(::PomaManagerExt)
         }
