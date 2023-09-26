@@ -10,5 +10,5 @@ val commandsModule = module {
     includes(contextSuppliersModule)
 
     single { CreatePomaAccountCommand(get(), get()) }
-    single { PomaManagerCommand(get(), get(), get(), get()) }
+    single { PomaManagerCommand(get(), get(), get()) }
 }
