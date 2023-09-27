@@ -14,6 +14,7 @@ import com.kotlindiscord.kord.extensions.components.components
 import com.kotlindiscord.kord.extensions.components.ephemeralButton
 import com.kotlindiscord.kord.extensions.components.forms.ModalForm
 import com.kotlindiscord.kord.extensions.types.respond
+import kotlinx.coroutines.flow.collectIndexed
 import kotlin.time.DurationUnit
 import kotlin.time.toDuration
 
@@ -32,7 +33,22 @@ class PomaManagerCommand(
                 content = "Choose action:"
                 val pomas = pomaAccountService.getAccountPomas(account)
                 components(30.toDuration(DurationUnit.SECONDS)) {
-                    ephemeralButton { label = "Roll New Poma(\$10)"; action { val newpoma = pomaAccountService.rollNewPoma(account); respond { content = newpoma.toString() } } }
+                    ephemeralButton {
+                        label = "List my Pomas"
+                        action {
+                            respond {
+                                content = buildString {
+                                    pomas.collectIndexed { i, p -> appendLine("${i}, $p") }
+                                }
+                            }
+                        }
+                    }
+                    ephemeralButton { label = "Roll New Poma(\$10)"
+                        action {
+                            val newpoma = pomaAccountService.rollNewPoma(account);
+                            respond { content = "Greetings ${newpoma.name} of rarity ${newpoma.rarity}" }
+                        }
+                    }
                     ephemeralButton(1, PomaSelector("Delete Poma", pomas, pomaRepoService::delete).builder)
                 }
             }

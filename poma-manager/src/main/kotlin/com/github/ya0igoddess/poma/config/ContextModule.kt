@@ -6,5 +6,5 @@ import org.koin.dsl.module
 val contextModule = module {
     includes(serviceModule)
 
-    single { PomaContextSupplier(get()) }
+    single { PomaContextSupplier(get(), get()) }
 }

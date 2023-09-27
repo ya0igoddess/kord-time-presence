@@ -32,7 +32,7 @@ class PomaAccountService(
         return discordMemberRepoService.getById(pomaAccount.id!!)
     }
 
-    override suspend fun getAccountPomas(pomaAccount: PomaAccount): Flow<Poma> {
+    override fun getAccountPomas(pomaAccount: PomaAccount): Flow<Poma> {
         return pomaRepoService.getByAccountId(pomaAccount.id!!)
     }
 
@@ -55,7 +55,10 @@ class PomaAccountService(
         } else if (randomValue < 94) {
             pomaGenerator.generateRandomPoma(2)
         } else {
-            pomaGenerator.generateRandomPoma(3)
+            val poma =pomaGenerator.generateRandomPoma(3).copy(
+
+            )
+            return poma.copy(name = "al-${poma.name}")
         }
     }
 }

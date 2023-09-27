@@ -9,7 +9,7 @@ interface IPomaAccountService {
     suspend fun createPomaAccount(member: DsMember): PomaAccount
 
     suspend fun getMemberByAccount(pomaAccount: PomaAccount): DsMember?
-    suspend fun getAccountPomas(pomaAccount: PomaAccount): Flow<Poma>
+    fun getAccountPomas(pomaAccount: PomaAccount): Flow<Poma>
 
     suspend fun rollNewPoma(pomaAccount: PomaAccount): Poma
 

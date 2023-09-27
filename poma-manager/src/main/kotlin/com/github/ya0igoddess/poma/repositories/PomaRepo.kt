@@ -8,13 +8,13 @@ import kotlinx.coroutines.flow.Flow
 import org.ufoss.kotysa.R2dbcSqlClient
 
 interface IPomaRepoService : CRUDService<Poma, Long> {
-    suspend fun getByAccountId(id: Long): Flow<Poma>
+    fun getByAccountId(id: Long): Flow<Poma>
 }
 
 class PomaCRUDRepo(
     sqlClient: R2dbcSqlClient
 ): KotysaLongCRUDRepository<Poma>(Pomas, Pomas.id, sqlClient) {
-    suspend fun getByAccountId(accountId: Long): Flow<Poma> {
+    fun getByAccountId(accountId: Long): Flow<Poma> {
         return (sqlClient select Pomas from Pomas where Pomas.accountId eq accountId).fetchAll()
     }
 }
@@ -22,7 +22,7 @@ class PomaCRUDRepo(
 class PomaRepoService(
     private val PomaCRUDRepo: PomaCRUDRepo
 ) : CRUDService<Poma, Long> by PomaCRUDRepo, IPomaRepoService {
-    override suspend fun getByAccountId(id: Long): Flow<Poma> {
+    override fun getByAccountId(id: Long): Flow<Poma> {
         return PomaCRUDRepo.getByAccountId(id)
     }
 }
