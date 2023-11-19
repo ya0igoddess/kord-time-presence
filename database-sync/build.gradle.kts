@@ -1,4 +1,6 @@
 
+val kordExVersion: String by properties
+
 plugins {
     kotlin("jvm")
     kotlin("plugin.serialization")
@@ -9,7 +11,7 @@ repositories {
 }
 
 dependencies {
-    implementation("com.kotlindiscord.kord.extensions:kord-extensions:1.5.6")
+    api("com.kotlindiscord.kord.extensions:kord-extensions:$kordExVersion")
     implementation("com.akuleshov7:ktoml-core:0.5.0")
     implementation("com.akuleshov7:ktoml-source:0.5.0")
     implementation("com.akuleshov7:ktoml-file:0.5.0")
