@@ -23,6 +23,3 @@ dependencies {
     implementation("org.liquibase:liquibase-core:4.23.1")
     implementation(kotlin("stdlib-jdk8"))
 }
-kotlin {
-    jvmToolchain(17)
-}
