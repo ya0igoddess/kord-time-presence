@@ -1,5 +1,7 @@
 
 val kordExVersion: String by properties
+val ktomlVersion: String by properties
+val koTySaVersion: String by properties
 
 plugins {
     kotlin("jvm")
@@ -12,11 +14,11 @@ repositories {
 
 dependencies {
     api("com.kotlindiscord.kord.extensions:kord-extensions:$kordExVersion")
-    implementation("com.akuleshov7:ktoml-core:0.5.0")
-    implementation("com.akuleshov7:ktoml-source:0.5.0")
-    implementation("com.akuleshov7:ktoml-file:0.5.0")
+    implementation("com.akuleshov7:ktoml-core:$ktomlVersion")
+    implementation("com.akuleshov7:ktoml-source:$ktomlVersion")
+    implementation("com.akuleshov7:ktoml-file:$ktomlVersion")
 
-    implementation("org.ufoss.kotysa:kotysa-r2dbc:3.1.0")
+    implementation("org.ufoss.kotysa:kotysa-r2dbc:$koTySaVersion")
 
     implementation("org.liquibase:liquibase-core:4.23.1")
     implementation(kotlin("stdlib-jdk8"))

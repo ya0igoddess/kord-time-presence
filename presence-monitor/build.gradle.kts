@@ -1,3 +1,4 @@
+val koTySaVersion: String by properties
 
 plugins {
     kotlin("jvm")
@@ -10,7 +11,7 @@ repositories {
 
 dependencies {
     implementation(project(":database-sync"))
-    implementation("org.ufoss.kotysa:kotysa-r2dbc:3.1.0")
+    implementation("org.ufoss.kotysa:kotysa-r2dbc:$koTySaVersion")
 
     implementation(kotlin("stdlib-jdk8"))
 }
