@@ -5,7 +5,7 @@ import org.kodein.di.DI
 import org.kodein.di.bindSingleton
 import org.kodein.di.instance
 
-val serviceModule = DI.Module {
+val serviceModule by DI.Module {
     importOnce(repoServiceModule)
 
     bindSingleton { VoiceConnectionRegistry(instance(), instance(), instance()) }

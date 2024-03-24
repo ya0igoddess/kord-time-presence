@@ -9,7 +9,7 @@ import org.kodein.di.DI
 import org.kodein.di.bindSingleton
 import org.kodein.di.instance
 
-val repoModule = DI.Module {
+val repoModule by DI.Module {
     importOnce(dataBaseModule)
 
     bindSingleton { DiscordGuildCRUDRepo(instance()) }

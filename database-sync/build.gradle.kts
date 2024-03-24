@@ -15,6 +15,7 @@ repositories {
 dependencies {
     api("com.kotlindiscord.kord.extensions:kord-extensions:$kordExVersion")
     api("org.kodein.di:kodein-di:$kodeinVersion")
+    api("org.kodein.di:kodein-di-conf:$kodeinVersion")
     implementation("com.akuleshov7:ktoml-core:$ktomlVersion")
     implementation("com.akuleshov7:ktoml-source:$ktomlVersion")
     implementation("com.akuleshov7:ktoml-file:$ktomlVersion")

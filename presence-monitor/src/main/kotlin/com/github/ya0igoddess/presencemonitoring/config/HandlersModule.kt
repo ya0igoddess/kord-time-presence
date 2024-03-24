@@ -6,7 +6,7 @@ import org.kodein.di.bindSingleton
 import org.kodein.di.instance
 import org.koin.dsl.module
 
-val handlerModule = DI.Module {
+val handlerModule by DI.Module {
     importOnce(serviceModule)
 
     bindSingleton { VoiceStatusChangeHandler(instance()) }

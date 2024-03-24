@@ -8,7 +8,7 @@ import org.kodein.di.instance
 import org.koin.core.module.dsl.singleOf
 import org.koin.dsl.module
 
-val repoServiceModule = DI.Module {
+val repoServiceModule by DI.Module {
     importAll(
         repoModule,
         com.github.ya0igoddess.dbsync.config.repoServiceModule

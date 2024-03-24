@@ -7,7 +7,7 @@ import org.kodein.di.bindSingleton
 import org.kodein.di.instance
 import org.koin.dsl.module
 
-val serviceModule = DI.Module {
+val serviceModule by DI.Module {
     importOnce(repoServiceModule)
 
     bindSingleton { SampleService(instance()) }

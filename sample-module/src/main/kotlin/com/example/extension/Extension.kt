@@ -6,12 +6,14 @@ import com.github.ya0igoddess.dbsync.migration.loadLiquibase
 import com.example.config.SampleModule
 import com.example.database.sampleTables
 import com.example.handlers.SampleHandler
+import com.github.ya0igoddess.dbsync.extensions.KodeinExtension
 import com.kotlindiscord.kord.extensions.commands.events.ChatCommandInvocationEvent
 import com.kotlindiscord.kord.extensions.extensions.Extension
 import com.kotlindiscord.kord.extensions.extensions.event
+import org.kodein.di.instance
 import org.koin.core.component.inject
 
-class SampleExtension: Extension() {
+class SampleExtension: KodeinExtension() {
 
     companion object {
         const val code = "sample_module"
@@ -23,12 +25,12 @@ class SampleExtension: Extension() {
     override suspend fun setup() {
         //getKoin().loadModules(listOf(SampleModule))
 
-        val databaseModule: SkaardModuleDatabase by inject()
+        val databaseModule: SkaardModuleDatabase by di.instance()
         databaseModule.addTables(sampleTables)
-        val settings: KordDBSettings by inject()
+        val settings: KordDBSettings by di.instance()
         loadLiquibase(settings.jdbc!!, name, "changelog/sample-module/main-changelog.xml")
 
-        val sampleHandler: SampleHandler by inject()
+        val sampleHandler: SampleHandler by di.instance()
 
         event<ChatCommandInvocationEvent> {
             action {

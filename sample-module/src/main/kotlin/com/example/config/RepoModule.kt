@@ -9,7 +9,7 @@ import org.koin.core.module.dsl.singleOf
 import org.koin.dsl.module
 import org.ufoss.kotysa.R2dbcSqlClient
 
-val repoModule = DI.Module {
+val repoModule by DI.Module {
     importOnce(dataBaseModule)
 
     bindSingleton { SampleCRUDRepo(instance()) }
