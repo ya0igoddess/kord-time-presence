@@ -23,5 +23,4 @@ dependencies {
     implementation("org.ufoss.kotysa:kotysa-r2dbc:$koTySaVersion")
 
     implementation("org.liquibase:liquibase-core:4.23.1")
-    implementation(kotlin("stdlib-jdk8"))
 }
