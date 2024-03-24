@@ -32,23 +32,6 @@ object Members: PostgresqlTable<DsMember>("${DBSyncExtension.code}.discord_membe
     }
 }
 
-/**
- * Temporary table until bigSerial on non-nullable Long is not presented in KOTYSA
- */
-object AbstractMembers: PostgresqlTable<AbstractDsMember>("${DBSyncExtension.code}.discord_member") {
-    val id = bigSerial(AbstractDsMember::id)
-        .primaryKey()
-    val name = varchar(AbstractDsMember::name)
-    val guildId = bigInt(AbstractDsMember::guildId, "guild_id")
-        .foreignKey(Guilds.id)
-    val userId = bigInt(AbstractDsMember::userId, "user_id")
-        .foreignKey(Users.id)
-
-    init {
-        index(setOf(guildId, userId), type = IndexType.UNIQUE, indexName =  "guild_user_index")
-    }
-}
-
 object Channels: PostgresqlTable<DsChannel>("${DBSyncExtension.code}.discord_channel") {
     val id = bigInt(DsChannel::id)
         .primaryKey()
@@ -62,4 +45,4 @@ object FakeTable: PostgresqlTable<FakeObj>("") {
     val id = bigInt(FakeObj::id).primaryKey()
 }
 
-val kordDBSyncTables = listOf(Users, Guilds, Members, AbstractMembers, Channels)
+val kordDBSyncTables = listOf(Users, Guilds, Members, Channels)

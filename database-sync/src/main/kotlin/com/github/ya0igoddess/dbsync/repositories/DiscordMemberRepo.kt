@@ -17,10 +17,6 @@ class DiscordMemberCrudRepo(
     sqlClient: R2dbcSqlClient
 ): KotysaLongCRUDRepository<DsMember>(Members, Members.id, sqlClient) {
 
-    override suspend fun save(entity: DsMember): DsMember {
-        val saved = sqlClient insertAndReturn AbstractDsMember(entity)
-        return saved.asMember
-    }
     suspend fun getByGuildAndUser(guildId: Long, userId: Long): DsMember? {
         return (sqlClient
                 select Members
