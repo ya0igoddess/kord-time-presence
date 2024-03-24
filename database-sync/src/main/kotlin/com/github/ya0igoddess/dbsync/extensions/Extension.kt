@@ -20,7 +20,6 @@ class DBSyncExtension: Extension() {
     override val name: String = code
 
     override suspend fun setup() {
-        loadKoinModules(DBSyncModule)
 
         val databaseModule: SkaardModuleDatabase by inject()
         val settings: KordDBSettings by inject()

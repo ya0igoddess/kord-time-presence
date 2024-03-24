@@ -1,10 +1,13 @@
 package com.example.config
 
 import com.example.handlers.SampleHandler
+import org.kodein.di.DI
+import org.kodein.di.bindSingleton
+import org.kodein.di.instance
 import org.koin.dsl.module
 
-val handlerModule = module {
-    includes(serviceModule)
+val handlerModule = DI.Module {
+    importOnce(serviceModule)
 
-    single<SampleHandler> { SampleHandler(get()) }
+    bindSingleton { SampleHandler(instance()) }
 }

@@ -6,7 +6,7 @@ import dev.kord.gateway.Intent
 import dev.kord.gateway.PrivilegedIntent
 
 @OptIn(PrivilegedIntent::class)
-suspend fun main(args: Array<String>) {
+suspend fun main() {
     val token = System.getenv("SKAARD_TOKEN")
     val defaultGuildId = System.getenv("TEST_GUILD_ID")
 

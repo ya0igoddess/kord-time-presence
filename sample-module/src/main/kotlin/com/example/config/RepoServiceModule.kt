@@ -2,13 +2,16 @@ package com.example.config
 
 import com.example.repositories.DiscordConnectionPeriodRepoService
 import com.example.repositories.ISampleRepoService
+import org.kodein.di.DI
+import org.kodein.di.bindSingleton
+import org.kodein.di.instance
 import org.koin.dsl.module
 
-val repoServiceModule = module {
-    includes(
+val repoServiceModule = DI.Module {
+    importAll(
         repoModule,
         com.github.ya0igoddess.dbsync.config.repoServiceModule
     )
 
-    single<ISampleRepoService> { DiscordConnectionPeriodRepoService(get()) }
+    bindSingleton { DiscordConnectionPeriodRepoService(instance()) }
 }

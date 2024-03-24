@@ -1,7 +1,7 @@
-
 val kordExVersion: String by properties
 val ktomlVersion: String by properties
 val koTySaVersion: String by properties
+val kodeinVersion: String by properties
 
 plugins {
     kotlin("jvm")
@@ -14,6 +14,7 @@ repositories {
 
 dependencies {
     api("com.kotlindiscord.kord.extensions:kord-extensions:$kordExVersion")
+    api("org.kodein.di:kodein-di:$kodeinVersion")
     implementation("com.akuleshov7:ktoml-core:$ktomlVersion")
     implementation("com.akuleshov7:ktoml-source:$ktomlVersion")
     implementation("com.akuleshov7:ktoml-file:$ktomlVersion")

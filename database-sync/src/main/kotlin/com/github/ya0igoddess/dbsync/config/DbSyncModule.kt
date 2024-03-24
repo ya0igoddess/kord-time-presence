@@ -1,8 +1,8 @@
 package com.github.ya0igoddess.dbsync.config
 
-import org.koin.dsl.module
+import org.kodein.di.DI
 
-val DBSyncModule = module {
-    includes(repoServiceModule)
+val DBSyncModule by DI.Module {
+    importOnce(repoServiceModule)
 }
 

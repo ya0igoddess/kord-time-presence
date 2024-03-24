@@ -22,7 +22,7 @@ class PresenceMonitorExtension: Extension() {
         get() = code
 
     override suspend fun setup() {
-        getKoin().loadModules(listOf(PresenceMonitoringModule))
+        //getKoin().loadModules(listOf(PresenceMonitoringModule))
 
         val databaseModule: SkaardModuleDatabase by inject()
         databaseModule.addTables(presenceMonitoringTables)

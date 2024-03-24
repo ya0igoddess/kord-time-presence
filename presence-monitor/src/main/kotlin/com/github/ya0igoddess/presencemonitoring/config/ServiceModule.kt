@@ -1,11 +1,12 @@
 package com.github.ya0igoddess.presencemonitoring.config
 
-import com.github.ya0igoddess.presencemonitoring.service.IVoiceConnectionRegistry
 import com.github.ya0igoddess.presencemonitoring.service.VoiceConnectionRegistry
-import org.koin.dsl.module
+import org.kodein.di.DI
+import org.kodein.di.bindSingleton
+import org.kodein.di.instance
 
-val serviceModule = module {
-    includes(repoServiceModule)
+val serviceModule = DI.Module {
+    importOnce(repoServiceModule)
 
-    single<IVoiceConnectionRegistry> { VoiceConnectionRegistry(get(), get(), get()) }
+    bindSingleton { VoiceConnectionRegistry(instance(), instance(), instance()) }
 }

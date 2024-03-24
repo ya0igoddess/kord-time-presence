@@ -21,7 +21,7 @@ class SampleExtension: Extension() {
         get() = code
 
     override suspend fun setup() {
-        getKoin().loadModules(listOf(SampleModule))
+        //getKoin().loadModules(listOf(SampleModule))
 
         val databaseModule: SkaardModuleDatabase by inject()
         databaseModule.addTables(sampleTables)

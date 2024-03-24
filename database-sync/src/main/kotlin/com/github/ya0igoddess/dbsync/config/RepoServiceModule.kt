@@ -1,14 +1,17 @@
 package com.github.ya0igoddess.dbsync.config
 
 import com.github.ya0igoddess.dbsync.repositories.*
+import org.kodein.di.DI
+import org.kodein.di.bindSingleton
+import org.kodein.di.instance
 import org.koin.core.module.dsl.singleOf
 import org.koin.dsl.module
 
-val repoServiceModule = module {
-    includes(repoModule)
+val repoServiceModule by DI.Module {
+    importOnce(repoModule)
 
-    singleOf<IDiscordUserRepoService, DiscordUserCRUDRepo>(::DiscordUserRepoService)
-    singleOf<IDiscordGuildRepoService, DiscordGuildCRUDRepo>(::DiscordGuildRepoService)
-    single<IDiscordMemberRepoService> { DiscordMemberRepoService(get(), get(), get()) }
-    singleOf<IDiscordChannelRepoService, DiscordChannelCRUDRepo>(::DiscordChannelRepoService)
+    bindSingleton { DiscordUserRepoService(instance()) }
+    bindSingleton{ DiscordGuildRepoService(instance()) }
+    bindSingleton { DiscordMemberRepoService(instance(), instance(), instance()) }
+    bindSingleton {DiscordChannelRepoService(instance()) }
 }

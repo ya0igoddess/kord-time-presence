@@ -8,12 +8,15 @@ import com.github.ya0igoddess.dbsync.repositories.DiscordUserCRUDRepo
 import com.github.ya0igoddess.presencemonitoring.model.VoiceConnectionPeriod
 import com.github.ya0igoddess.presencemonitoring.repositories.IDiscordConnectionPeriodRepoService
 import com.github.ya0igoddess.presencemonitoring.repositories.VoiceConnectionPeriodCRUDRepo
+import org.kodein.di.DI
+import org.kodein.di.bindSingleton
+import org.kodein.di.instance
 import org.koin.core.module.dsl.singleOf
 import org.koin.dsl.module
 import org.ufoss.kotysa.R2dbcSqlClient
 
-val repoModule = module {
-    includes(dataBaseModule)
+val repoModule = DI.Module {
+    importOnce(dataBaseModule)
 
-    singleOf<VoiceConnectionPeriodCRUDRepo, R2dbcSqlClient>(::VoiceConnectionPeriodCRUDRepo)
+    bindSingleton{ VoiceConnectionPeriodCRUDRepo(instance()) }
 }
