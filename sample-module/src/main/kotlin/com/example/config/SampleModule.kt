@@ -1,9 +1,9 @@
 package com.example.config
 
 import com.github.ya0igoddess.dbsync.config.DBSyncModule
+import com.github.ya0igoddess.dbsync.config.importAllOnce
 import org.kodein.di.DI
-import org.koin.dsl.module
 
-val SampleModule = DI.Module {
-    importAll(DBSyncModule, serviceModule, handlerModule)
+val SampleModule by DI.Module {
+    importAllOnce(DBSyncModule, sampleServiceModule, sampleHandlerModule)
 }

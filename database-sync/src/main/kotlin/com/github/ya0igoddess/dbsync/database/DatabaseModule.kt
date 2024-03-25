@@ -2,13 +2,16 @@ package com.github.ya0igoddess.dbsync.database
 
 import com.github.ya0igoddess.dbsync.config.settings.KordDBSettings
 import com.github.ya0igoddess.dbsync.service.settings.FileSettingsProvider
-import io.r2dbc.spi.*
-import org.kodein.di.*
+import io.r2dbc.spi.ConnectionFactory
+import org.kodein.di.DI
+import org.kodein.di.bindEagerSingleton
+import org.kodein.di.bindFactory
+import org.kodein.di.instance
 import org.ufoss.kotysa.R2dbcSqlClient
 
 val dataBaseModule by DI.Module {
     bindFactory<Any, KordDBSettings> { FileSettingsProvider().get() }
-    bindSingleton<SkaardModuleDatabase> { SkaardModuleDatabase(instance()) }
-    bindSingleton<ConnectionFactory> { instance<SkaardModuleDatabase>().factory }
-    bindSingleton<R2dbcSqlClient>  { instance<SkaardModuleDatabase>().sqlClient }
+    bindEagerSingleton<SkaardModuleDatabase> { SkaardModuleDatabase(instance()) }
+    bindEagerSingleton<ConnectionFactory> { instance<SkaardModuleDatabase>().factory }
+    bindEagerSingleton<R2dbcSqlClient> { instance<SkaardModuleDatabase>().sqlClient }
 }

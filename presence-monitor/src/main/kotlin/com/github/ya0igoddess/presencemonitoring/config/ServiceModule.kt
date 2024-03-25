@@ -2,11 +2,11 @@ package com.github.ya0igoddess.presencemonitoring.config
 
 import com.github.ya0igoddess.presencemonitoring.service.VoiceConnectionRegistry
 import org.kodein.di.DI
-import org.kodein.di.bindSingleton
+import org.kodein.di.bindEagerSingleton
 import org.kodein.di.instance
 
-val serviceModule by DI.Module {
-    importOnce(repoServiceModule)
+val presenceServiceModule by DI.Module {
+    importOnce(presenceRepoServiceModule)
 
-    bindSingleton { VoiceConnectionRegistry(instance(), instance(), instance()) }
+    bindEagerSingleton { VoiceConnectionRegistry(instance(), instance(), instance()) }
 }

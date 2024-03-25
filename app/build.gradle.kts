@@ -17,3 +17,7 @@ dependencies {
     runtimeOnly("org.postgresql:r2dbc-postgresql:1.0.2.RELEASE")
     runtimeOnly("org.postgresql:postgresql:42.6.0")
 }
+
+application {
+    mainClass.set("MainKt")
+}

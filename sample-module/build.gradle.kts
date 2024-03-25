@@ -12,6 +12,4 @@ repositories {
 dependencies {
     implementation(project(":database-sync"))
     implementation("org.ufoss.kotysa:kotysa-r2dbc:$koTySaVersion")
-
-    implementation(kotlin("stdlib-jdk8"))
 }

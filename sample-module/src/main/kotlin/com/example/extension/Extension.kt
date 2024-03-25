@@ -1,17 +1,15 @@
 package com.example.extension
 
-import com.github.ya0igoddess.dbsync.config.settings.KordDBSettings
-import com.github.ya0igoddess.dbsync.database.SkaardModuleDatabase
-import com.github.ya0igoddess.dbsync.migration.loadLiquibase
 import com.example.config.SampleModule
 import com.example.database.sampleTables
 import com.example.handlers.SampleHandler
+import com.github.ya0igoddess.dbsync.config.settings.KordDBSettings
+import com.github.ya0igoddess.dbsync.database.SkaardModuleDatabase
 import com.github.ya0igoddess.dbsync.extensions.KodeinExtension
+import com.github.ya0igoddess.dbsync.migration.loadLiquibase
 import com.kotlindiscord.kord.extensions.commands.events.ChatCommandInvocationEvent
-import com.kotlindiscord.kord.extensions.extensions.Extension
 import com.kotlindiscord.kord.extensions.extensions.event
 import org.kodein.di.instance
-import org.koin.core.component.inject
 
 class SampleExtension: KodeinExtension() {
 
@@ -23,8 +21,7 @@ class SampleExtension: KodeinExtension() {
         get() = code
 
     override suspend fun setup() {
-        //getKoin().loadModules(listOf(SampleModule))
-
+        di.addImport(SampleModule)
         val databaseModule: SkaardModuleDatabase by di.instance()
         databaseModule.addTables(sampleTables)
         val settings: KordDBSettings by di.instance()
