@@ -11,9 +11,9 @@ object ConnectionPeriods: PostgresqlTable<VoiceConnectionPeriod>(
 ) {
     val id = bigSerial(VoiceConnectionPeriod::id).primaryKey()
     val memberId = bigInt(VoiceConnectionPeriod::memberId, "member_id")
-        .foreignKey(Members.id)
-    val guildId = bigInt(VoiceConnectionPeriod::channelId, "channel_id")
-        .foreignKey(Channels.id)
+            .foreignKey(Members.id)
+    val channelId = bigInt(VoiceConnectionPeriod::channelId, "channel_id")
+            .foreignKey(Channels.id)
     val start = timestamp(VoiceConnectionPeriod::start, "start_dttm")
     val end = timestamp(VoiceConnectionPeriod::end, "end_dttm")
 }

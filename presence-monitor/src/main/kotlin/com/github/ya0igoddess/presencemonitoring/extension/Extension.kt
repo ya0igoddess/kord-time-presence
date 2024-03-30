@@ -4,9 +4,12 @@ import com.github.ya0igoddess.dbsync.config.settings.KordDBSettings
 import com.github.ya0igoddess.dbsync.database.SkaardModuleDatabase
 import com.github.ya0igoddess.dbsync.extensions.KodeinExtension
 import com.github.ya0igoddess.dbsync.migration.loadLiquibase
+import com.github.ya0igoddess.dbsync.repositories.IDiscordChannelRepoService
 import com.github.ya0igoddess.presencemonitoring.config.PresenceMonitoringModule
 import com.github.ya0igoddess.presencemonitoring.database.presenceMonitoringTables
+import com.github.ya0igoddess.presencemonitoring.handlers.RegisterGetUniqueUsersByPeriodCommand
 import com.github.ya0igoddess.presencemonitoring.handlers.VoiceStatusChangeHandler
+import com.github.ya0igoddess.presencemonitoring.service.IVoiceConnectionUserService
 import com.kotlindiscord.kord.extensions.extensions.event
 import dev.kord.core.event.user.VoiceStateUpdateEvent
 import org.kodein.di.instance
@@ -35,6 +38,11 @@ class PresenceMonitorExtension: KodeinExtension() {
                 voiceStatusChangeHandler.handle(event)
             }
         }
+
+        val voiceConnectionUserService: IVoiceConnectionUserService by di.instance()
+        val channelRepoService: IDiscordChannelRepoService by di.instance()
+        RegisterGetUniqueUsersByPeriodCommand(voiceConnectionUserService, channelRepoService)
+
     }
 
 }

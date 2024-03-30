@@ -14,6 +14,7 @@ repositories {
 
 dependencies {
     implementation(project(":database-sync"))
+    implementation("org.jetbrains.kotlinx:kotlinx-datetime:0.6.0-RC.2")
     implementation("org.ufoss.kotysa:kotysa-r2dbc:$koTySaVersion")
 
     testImplementation("io.kotest:kotest-assertions-core:$kotestVersion")

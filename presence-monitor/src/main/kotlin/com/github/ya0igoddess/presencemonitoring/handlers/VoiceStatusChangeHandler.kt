@@ -14,6 +14,6 @@ class VoiceStatusChangeHandler(
         oldState?.let { registry.closeConnection(it.sessionId) }
         val newChannel = newState.channelId
         if (newChannel == null) return
-        registry.registerNewConnection(newState.sessionId, newState.data.memberId.value!!.lvalue, newChannel.lvalue)
+        registry.registerNewConnection(newState.sessionId, newState.getMember().id.lvalue, newChannel.lvalue)
     }
 }

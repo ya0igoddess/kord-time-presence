@@ -13,5 +13,5 @@ val presenceRepoServiceModule by DI.Module {
         repoServiceModule
     )
 
-    bindEagerSingleton { DiscordConnectionPeriodRepoService(instance()) }
+    bindEagerSingleton { DiscordConnectionPeriodRepoService(instance(), instance()) }
 }
