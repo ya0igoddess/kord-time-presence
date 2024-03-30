@@ -1,9 +1,11 @@
 package com.github.ya0igoddess.dbsync.service.common
 
 import kotlinx.coroutines.flow.Flow
-import org.ufoss.kotysa.*
-import org.ufoss.kotysa.columns.LongDbBigIntColumnNotNull
-import org.ufoss.kotysa.columns.LongDbBigSerialColumnNotNull
+import kotlinx.coroutines.flow.emptyFlow
+import org.ufoss.kotysa.AbstractTable
+import org.ufoss.kotysa.Column
+import org.ufoss.kotysa.LongColumnNotNull
+import org.ufoss.kotysa.R2dbcSqlClient
 
 abstract class KotysaAbstractCRUDRepository<T : Any, ID : Any>(
         protected val table: AbstractTable<T>,
@@ -30,10 +32,14 @@ abstract class KotysaLongCRUDRepository<T: Any>(
 
     override suspend fun deleteById(id: Long): Long = (sqlClient deleteFrom table where tableIdColumn eq id).execute()
 
-    override suspend fun getAllByIds(ids: List<Long>): Flow<T> = (sqlClient
-            select table from table
-            where tableIdColumn `in` ids)
-            .fetchAll()
+    override suspend fun getAllByIds(ids: List<Long>): Flow<T> {
+        if (ids.isEmpty()) return emptyFlow()
+        return (
+                sqlClient
+                        select table from table
+                        where tableIdColumn `in` ids)
+                .fetchAll()
+    }
 
     override suspend fun delete(entity: T): Long = deleteById(requireNotNull(tableIdColumn.entityGetter.invoke(entity)))
 }
