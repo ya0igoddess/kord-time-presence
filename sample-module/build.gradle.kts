@@ -1,5 +1,3 @@
-val koTySaVersion: String by properties
-
 plugins {
     kotlin("jvm")
     kotlin("plugin.serialization")
@@ -10,6 +8,6 @@ repositories {
 }
 
 dependencies {
+    implementation(compileLibs.bundles.moduleLibs)
     implementation(project(":database-sync"))
-    implementation("org.ufoss.kotysa:kotysa-r2dbc:$koTySaVersion")
 }
