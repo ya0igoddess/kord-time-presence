@@ -1,6 +1,8 @@
+
 import com.example.extension.SampleExtension
 import com.github.ya0igoddess.dbsync.extensions.DBSyncExtension
 import com.github.ya0igoddess.presencemonitoring.extension.PresenceMonitorExtension
+import com.github.ya0igoddess.toxicityanalyzer.extension.ToxicityAnalyzerExtension
 import com.kotlindiscord.kord.extensions.ExtensibleBot
 import dev.kord.gateway.Intent
 import dev.kord.gateway.PrivilegedIntent
@@ -15,6 +17,7 @@ suspend fun main() {
             add(::DBSyncExtension)
             add(::SampleExtension)
             add(::PresenceMonitorExtension)
+            add(::ToxicityAnalyzerExtension)
         }
 
         applicationCommands {

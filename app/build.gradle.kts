@@ -14,6 +14,7 @@ dependencies {
     implementation(project(":database-sync"))
     implementation(project(":presence-monitor"))
     implementation(project(":sample-module"))
+    implementation(project(":toxicity-analyzer"))
 
     runtimeOnly("ch.qos.logback:logback-classic:1.4.7")
     runtimeOnly("org.postgresql:r2dbc-postgresql:1.0.2.RELEASE")
