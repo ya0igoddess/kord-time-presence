@@ -44,4 +44,5 @@ dependencyResolutionManagement {
 include("database-sync")
 include("sample-module")
 include("presence-monitor")
+include("toxicity-analyzer")
 include("app")
