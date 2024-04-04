@@ -12,8 +12,9 @@ import java.io.OutputStreamWriter
 
 class PythonToxicityCheckService : IToxicityCheck {
     private val process = ProcessBuilder()
-            .directory(File("."))
-            .command("python", "./analyzer_model/main.py")
+        .directory(File("."))
+        .command("python", "./analyzer_model/main.py")
+        .also { it.environment()["PYTHONIOENCODING"] = "UTF-8" }
             .redirectError(File("errors.txt"))
             .start()
 
