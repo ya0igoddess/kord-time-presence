@@ -10,6 +10,7 @@ import com.kotlindiscord.kord.extensions.commands.converters.impl.channel
 import com.kotlindiscord.kord.extensions.components.forms.ModalForm
 import com.kotlindiscord.kord.extensions.extensions.Extension
 import com.kotlindiscord.kord.extensions.extensions.publicSlashCommand
+import dev.kord.rest.builder.message.addFile
 
 class GetUniqueUsersByPeriodArgs : Arguments() {
     val channel by channel { name = "channel"; description = "Channel to get info" }
@@ -31,6 +32,25 @@ internal suspend fun Extension.RegisterGetUniqueUsersByPeriodCommand(
             val channel = requireNotNull(channelRepo.getById(arguments.channel.id.lvalue))
             respond {
                 content = service.getUniqueMembersByPeriod(channel, start, end).map { it.name }.toString()
+            }
+        }
+    }
+}
+
+internal suspend fun Extension.RegisterGetTotalActivityByPeriod(
+        service: IVoiceConnectionUserService,
+        channelRepo: IDiscordChannelRepoService
+): PublicSlashCommand<GetUniqueUsersByPeriodArgs, ModalForm> {
+    return publicSlashCommand(::GetUniqueUsersByPeriodArgs) {
+        name = "get_unique_users_info"
+        description = "Get list of active users in given period"
+        action {
+            val start = arguments.start
+            val end = arguments.end
+            val channel = requireNotNull(channelRepo.getById(arguments.channel.id.lvalue))
+            respond {
+                content = ""
+                addFile(service.getMembersDurationStatInPeriod(channel, start, end).toPath())
             }
         }
     }

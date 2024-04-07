@@ -7,6 +7,7 @@ import com.github.ya0igoddess.dbsync.migration.loadLiquibase
 import com.github.ya0igoddess.dbsync.repositories.IDiscordChannelRepoService
 import com.github.ya0igoddess.presencemonitoring.config.PresenceMonitoringModule
 import com.github.ya0igoddess.presencemonitoring.database.presenceMonitoringTables
+import com.github.ya0igoddess.presencemonitoring.handlers.RegisterGetTotalActivityByPeriod
 import com.github.ya0igoddess.presencemonitoring.handlers.RegisterGetUniqueUsersByPeriodCommand
 import com.github.ya0igoddess.presencemonitoring.handlers.VoiceStatusChangeHandler
 import com.github.ya0igoddess.presencemonitoring.service.IVoiceConnectionUserService
@@ -42,6 +43,7 @@ class PresenceMonitorExtension: KodeinExtension() {
         val voiceConnectionUserService: IVoiceConnectionUserService by di.instance()
         val channelRepoService: IDiscordChannelRepoService by di.instance()
         RegisterGetUniqueUsersByPeriodCommand(voiceConnectionUserService, channelRepoService)
+        RegisterGetTotalActivityByPeriod(voiceConnectionUserService, channelRepoService)
 
     }
 
