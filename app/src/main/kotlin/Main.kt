@@ -4,6 +4,7 @@ import com.github.ya0igoddess.dbsync.extensions.DBSyncExtension
 import com.github.ya0igoddess.presencemonitoring.extension.PresenceMonitorExtension
 import com.github.ya0igoddess.toxicityanalyzer.extension.ToxicityAnalyzerExtension
 import com.kotlindiscord.kord.extensions.ExtensibleBot
+import com.mquiz.extension.MusicQuizExtension
 import dev.kord.gateway.Intent
 import dev.kord.gateway.PrivilegedIntent
 
@@ -18,6 +19,7 @@ suspend fun main() {
             add(::SampleExtension)
             add(::PresenceMonitorExtension)
             add(::ToxicityAnalyzerExtension)
+            add(::MusicQuizExtension)
         }
 
         applicationCommands {
