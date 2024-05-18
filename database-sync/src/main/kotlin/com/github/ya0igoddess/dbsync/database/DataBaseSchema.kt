@@ -1,10 +1,12 @@
 package com.github.ya0igoddess.dbsync.database
 
 import com.github.ya0igoddess.dbsync.extensions.DBSyncExtension
-import com.github.ya0igoddess.dbsync.model.discord.*
+import com.github.ya0igoddess.dbsync.model.discord.DsChannel
+import com.github.ya0igoddess.dbsync.model.discord.DsGuild
+import com.github.ya0igoddess.dbsync.model.discord.DsMember
+import com.github.ya0igoddess.dbsync.model.discord.DsUser
 import org.ufoss.kotysa.IndexType
 import org.ufoss.kotysa.postgresql.PostgresqlTable
-import org.ufoss.kotysa.tables
 
 object Users: PostgresqlTable<DsUser>("${DBSyncExtension.code}.discord_user") {
     val id = bigInt(DsUser::id)
@@ -19,7 +21,7 @@ object Guilds: PostgresqlTable<DsGuild>("${DBSyncExtension.code}.discord_guild")
 }
 
 object Members: PostgresqlTable<DsMember>("${DBSyncExtension.code}.discord_member") {
-    val id = bigInt(DsMember::id)
+    val id = bigSerial(DsMember::id)
         .primaryKey()
     val name = varchar(DsMember::name)
     val guildId = bigInt(DsMember::guildId, "guild_id")

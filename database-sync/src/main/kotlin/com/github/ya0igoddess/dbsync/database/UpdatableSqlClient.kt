@@ -88,6 +88,10 @@ class UpdatableSqlClient(
         return r2dbcSqlClient.selectSum(column)
     }
 
+    override fun selects(): CoroutinesSqlClientSelect.Selects {
+        return r2dbcSqlClient.selects()
+    }
+
     override fun <T : Any> update(table: Table<T>): CoroutinesSqlClientDeleteOrUpdate.Update<T> {
         return r2dbcSqlClient.update(table)
     }
