@@ -7,6 +7,9 @@ plugins {
 
 repositories {
     mavenCentral()
+    maven {
+        url = uri("https://jitpack.io")
+    }
 }
 
 dependencies {
@@ -16,7 +19,6 @@ dependencies {
     implementation(project(":sample-module"))
     implementation(project(":toxicity-analyzer"))
     implementation(project(":music-quiz"))
-
     runtimeOnly("ch.qos.logback:logback-classic:1.4.7")
     runtimeOnly("org.postgresql:r2dbc-postgresql:1.0.2.RELEASE")
     runtimeOnly("org.postgresql:postgresql:42.6.0")
