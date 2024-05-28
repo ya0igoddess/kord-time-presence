@@ -8,7 +8,7 @@ import java.util.function.Supplier
 
 class FileSettingsProvider : Supplier<KordDBSettings> {
     override fun get(): KordDBSettings {
-        val settingProperty = System.getProperty("kord-db-sync-settings")
+        val settingProperty = System.getProperty("kord.dbsync.settings")
         val file = if (settingProperty != null) {
             File(settingProperty)
         } else {
