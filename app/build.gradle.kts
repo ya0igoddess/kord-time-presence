@@ -27,3 +27,16 @@ dependencies {
 application {
     mainClass.set("MainKt")
 }
+
+tasks.jar {
+    setProperty("zip64", true)
+    manifest.attributes["Main-Class"] = "MainKt"
+    val dependencies = configurations
+        .runtimeClasspath
+        .get()
+        .map(::zipTree) // OR .map { zipTree(it) }
+    from(dependencies) {
+        exclude("META-INF/*.RSA", "META-INF/*.DSA", "META-INF/*.SF")
+    }
+    duplicatesStrategy = DuplicatesStrategy.EXCLUDE
+}
