@@ -8,14 +8,8 @@ import java.util.function.Supplier
 
 class FileSettingsProvider : Supplier<KordDBSettings> {
     override fun get(): KordDBSettings {
-        val settingProperty = System.getProperty("kord.dbsync.settings")
-        val file = if (settingProperty != null) {
-            File(settingProperty)
-        } else {
-            File(this.javaClass.classLoader.getResource("settings.toml")?.file
-                ?: throw IllegalArgumentException("Settings file is not present"))
-        }
-
+        val fileName = System.getenv().getOrDefault("kord.dbsync.settings", "settings.toml")
+        val file = File(fileName)
         return TomlFileReader.partiallyDecodeFromFile(serializer(), file.absolutePath, "kord-db-sync")
     }
 }
