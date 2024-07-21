@@ -4,5 +4,4 @@ import org.kodein.di.DI
 
 val tasksHandlerModule by DI.Module {
     importOnce(tasksServiceModule)
-
 }

@@ -2,8 +2,9 @@ package com.github.ya0igoddess.tasks.extension
 
 import com.github.ya0igoddess.dbsync.extensions.KodeinExtension
 import com.github.ya0igoddess.tasks.config.TaskModule
-import com.kotlindiscord.kord.extensions.commands.events.ChatCommandInvocationEvent
-import com.kotlindiscord.kord.extensions.extensions.event
+import com.github.ya0igoddess.tasks.handlers.registerShowRunningTasksCommands
+import com.github.ya0igoddess.tasks.service.TaskExecutor
+import org.kodein.di.instance
 
 class TasksExtension : KodeinExtension() {
 
@@ -17,9 +18,8 @@ class TasksExtension : KodeinExtension() {
     override suspend fun setup() {
         di.addImport(TaskModule)
 
-
-        event<ChatCommandInvocationEvent> {
-        }
+        val taskExecutor: TaskExecutor by di.instance()
+        registerShowRunningTasksCommands(taskExecutor)
     }
 
 }
