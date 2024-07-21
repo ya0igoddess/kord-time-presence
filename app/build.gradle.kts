@@ -20,6 +20,7 @@ dependencies {
     implementation(project(":toxicity-analyzer"))
     implementation(project(":music-quiz"))
     implementation(project(":tasks-module"))
+    implementation(project(":analytics-module"))
     runtimeOnly("ch.qos.logback:logback-classic:1.4.7")
     runtimeOnly("org.postgresql:r2dbc-postgresql:1.0.2.RELEASE")
     runtimeOnly("org.postgresql:postgresql:42.6.0")

@@ -1,5 +1,6 @@
 
 import com.example.extension.SampleExtension
+import com.github.ya0igoddess.analytics.extension.AnalyticsExtension
 import com.github.ya0igoddess.dbsync.extensions.DBSyncExtension
 import com.github.ya0igoddess.presencemonitoring.extension.PresenceMonitorExtension
 import com.github.ya0igoddess.tasks.extension.TasksExtension
@@ -22,6 +23,7 @@ suspend fun main() {
             add(::ToxicityAnalyzerExtension)
             add(::MusicQuizExtension)
             add(::TasksExtension)
+            add(::AnalyticsExtension)
         }
 
         intents {
